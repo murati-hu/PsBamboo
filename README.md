@@ -62,5 +62,5 @@ Apache License, Version 2.0 (see [LICENSE][LICENSE])
 [bamboo]: https://www.atlassian.com/software/bamboo
 [bambooapi]: https://developer.atlassian.com/bamboodev/rest-apis
 [muratiakos]: http://murati.hu
-[license]: https://github.com/test-kitchen/test-kitchen/blob/master/LICENSE
+[license]: LICENSE
 [semver]: http://semver.org/
