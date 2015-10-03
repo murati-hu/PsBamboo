@@ -27,6 +27,32 @@ Authenticated access
 Set-BambooCredential -UserName <user> -Password <password>
 Get-BambooCurrentUser
 ```
+
+All available Cmdlets
+```powershell
+Get-Command -Module PsBamboo | Select Name
+```
+
+> Add-BambooPlanBranch <br />
+> Copy-BambooPlan <br />
+> Disable-BambooPlan <br />
+> Disable-BambooPlanBranch <br />
+> Enable-BambooPlan <br />
+> Enable-BambooPlanBranch <br />
+> Expand-BambooResource <br />
+> Get-BambooArtifact <br />
+> Get-BambooCurrentUser <br />
+> Get-BambooPlan <br />
+> Get-BambooPlanBranch <br />
+> Get-BambooProject <br />
+> Get-BambooQueuedBuild <br />
+> Get-BambooResult <br />
+> Invoke-BambooRestMethod <br />
+> Resume-BambooQueuedBuild <br />
+> Set-BambooCredential <br />
+> Set-BambooServer <br />
+> Stop-BambooQueuedBuild <br />
+
 ## Documentation
 Cmdlets and functions for PsBamboo have their own help PowerShell help, which
 you can read with `help <cmdlet-name>`. Wiki is also added to this project with
