@@ -17,8 +17,8 @@ Import-Module PsBamboo
 ```
 
 ## Examples
-Try and execute the `ProjectAndPlan.examples.ps1` against your local Bamboo
-server to see all the Cmdlets in action.
+Try and execute the [`ProjectAndPlan.examples.ps1`][examples] against your local Bamboo
+server to see all the Cmdlets in action or call `help` on any of the PsBamboo cmdlets.
 
 ### Server login
 ```powershell
