@@ -1,4 +1,8 @@
-Import-Module PsBamboo
+# Use local module for the examples
+Remove-Module PsBamboo -ErrorAction SilentlyContinue
+$localModule = Join-Path (Split-Path $PSScriptRoot -Parent) "PsBamboo.psm1"
+Import-Module $localModule
+
 
 #region Project Demo
 
@@ -46,7 +50,8 @@ Import-Module PsBamboo
 
     Read-Host "Copy (Clone) a Plan - Press Enter"
     $NewPlanKey = "$($FirstPlan)2"
-    Copy-BambooPlan -PlanKey $FirstPlan -NewPlanKey $NewPlanKey
+    $NewPlan = Copy-BambooPlan -PlanKey $FirstPlan -NewPlanKey $NewPlanKey
+    $NewPlan | Out-Host
 
 #endregion
 
@@ -58,17 +63,14 @@ Import-Module PsBamboo
     $BranchName='pester'
     $VcsBranch='feature/pester'
     $NewBranchPlan = Add-BambooPlanBranch -PlanKey $NewPlanKey -BranchName $BranchName -VcsBranch $VcsBranch
-    $NewBranchPlan
+    $NewBranchPlan | Out-Host
 
     Read-Host "Enable PlanBranch - Press ENTER"
-    Enable-BambooPlanBranch -PlanKey $NewBranchPlan.key
-    Get-BambooPlanBranch -PlanKey $NewBranchPlan.key | Format-Table key,name,enabled
+    Enable-BambooPlanBranch -PlanKey $NewPlanKey -BranchName $BranchName
+    Get-BambooPlanBranch -PlanKey $NewPlanKey -BranchName $BranchName | Format-Table key,name,enabled
 
     Read-Host "Disable PlanBranch - Press ENTER"
-    Disable-BambooPlanBranch -PlanKey $NewBranchPlan.key
-    Get-BambooPlanBranch -PlanKey $NewBranchPlan.key | Format-Table key,name,enabled
-
-    Read-Host "Remove the new PlanBranch - Press ENTER"
-    Remove-BambooPlanBranch -PlanKey $NewBranchPlan.key
+    Disable-BambooPlanBranch -PlanKey $NewPlanKey -BranchName $BranchName
+    Get-BambooPlanBranch -PlanKey $NewPlanKey -BranchName $BranchName | Format-Table key,name,enabled
 
 #endregion
