@@ -1,3 +1,11 @@
+<#
+.SYNOPSIS
+    Gets all the artifacts for a specific Bamboo Plan.
+.PARAMETER PlanKey
+    String for the Bamboo Plan.
+.EXAMPLE
+    Get-BambooArtifact -PlanKey 'PRJ-PLANKEY'
+#>
 function Get-BambooArtifact {
     param(
         [Parameter()]

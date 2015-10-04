@@ -1,7 +1,20 @@
+<#
+.SYNOPSIS
+    Resumes or Continues a single suspended build item.
+.DESCRIPTION
+    If -ExecuteAllStages parameter is specified it continues a paused or
+    manually suspended build.
+.PARAMETER BuildKey
+    Mandatory - BuildKey for the suspended build
+.PARAMETER ExecuteAllStages
+    Optional - Switch to instructs bamboo to finish all further stages
+.EXAMPLE
+    Resume-BambooQueuedBuild -BuildKey 'PRJ-PLANKEY-3' -ExecuteAllStages
+#>
 function Resume-BambooQueuedBuild {
     [CmdletBinding()]
     param(
-        [Parameter()]
+        [Parameter(Mandatory)]
         [ValidatePattern('\w+-\w+-\d+')]
         [string]$BuildKey,
 

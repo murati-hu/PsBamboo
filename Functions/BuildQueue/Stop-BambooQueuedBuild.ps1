@@ -1,14 +1,19 @@
+<#
+.SYNOPSIS
+    Stops and aborts a single queued or suspended build item.
+.DESCRIPTION
+
+.PARAMETER BuildKey
+    Mandatory - BuildKey for the build to be stoppped
+.EXAMPLE
+    Stop-BambooQueuedBuild -BuildKey 'PRJ-PLANKEY-3'
+#>
 function Stop-BambooQueuedBuild {
     [CmdletBinding()]
     param(
-        [Parameter()]
+        [Parameter(Mandatory)]
         [ValidatePattern('\w+-\w+-\d+')]
-        [string]$BuildKey,
-
-        [switch]$CustomRevision,
-        [switch]$ExecuteAllStages
+        [string]$BuildKey
     )
-    #&customRevision
-    Invoke-BambooRestMethod -Resource "queue/$($BuildKey)" -Method Delete # |
-    #Expand-BambooResource -ResourceName 'queuedBuild' -Root 'queue'
+    Invoke-BambooRestMethod -Resource "queue/$($BuildKey)" -Method Delete
 }
