@@ -32,7 +32,6 @@ Import-Module PsBamboo
     $Plans = Get-BambooPlan
     $Plans | Format-Table Key,Name
 
-
     Read-Host "Detail a specific Plan - Press ENTER"
     $FirstPlan = $Plans | Select -First 1 -ExpandProperty key
     Get-BambooPlan -PlanKey $FirstPlan | Out-Host
@@ -40,7 +39,6 @@ Import-Module PsBamboo
     Read-Host "Disable Plan and show details - Press ENTER"
     Disable-BambooPlan -PlanKey $FirstPlan
     Get-BambooPlan -PlanKey $FirstPlan | Format-Table key,name,enabled
-
 
     Read-Host "Re-enable Plan and show details - Press ENTER"
     Enable-BambooPlan -PlanKey $FirstPlan
@@ -72,4 +70,5 @@ Import-Module PsBamboo
 
     Read-Host "Remove the new PlanBranch - Press ENTER"
     Remove-BambooPlanBranch -PlanKey $NewBranchPlan.key
+
 #endregion
