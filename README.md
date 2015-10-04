@@ -6,10 +6,10 @@ PsBamboo is a PowerShell module that provides a wrapper for [Bamboo][bamboo]
 resources in a scriptable and automatable manner.
 
 The module handles both authenticated and anonymous methods and supports the following
-resources: Project, Plan, PlanBranch, BuildQueue, Artifact, Server, CurrentUser
+resources: `Project`, `Plan`, `PlanBranch`, `QueuedBuild`, `Artifact`, `Server`, `CurrentUser`
 
 In addition to several already implemented functions, it also provides
-generic cmdlets to access any not yet covered Bamboo REST resources too.
+generic Cmdlets to access any not yet covered [Bamboo REST API][bambooapi] resources too.
 
 ## Usage
 ```powershell
@@ -17,18 +17,17 @@ Import-Module PsBamboo
 ```
 
 ## Examples
-Try and execute the [`ProjectAndPlan.examples.ps1`][Examples] against your local Bamboo server to see all the cmdlets in action.
+Try and execute the `ProjectAndPlan.examples.ps1` against your local Bamboo
+server to see all the Cmdlets in action.
 
 ### Server login
 ```powershell
-$Server = 'http://localhost:8085'
-$UserName = 'testuser'
-$Password = 'testpassword'
-
 # Set the target Bamboo Server
-Set-BambooServer -Url $Server
+Set-BambooServer -Url 'http://localhost:8085'
+
 # Set login credentials for further cmdlets
-Set-BambooCredential -UserName $UserName -Password $Password
+Set-BambooCredential -UserName 'testuser' -Password 'testpassword'
+
 # Get the current authenticated user details
 Get-BambooCurrentUser
 ```
@@ -61,12 +60,12 @@ Enable-BambooPlan -PlanKey 'PRJKEY-PLANKEY'
 Copy-BambooPlan -PlanKey 'PRJKEY-PLANKEY' -NewPlanKey 'PRJKEY-NEWPLAN'
 ```
 
+
 ### Plan-Branch cmdlets
 ```powershell
 # Create a new PlanBranch to a VCS-branch
 $BranchName='pester'
-$VcsBranch='feature/pester'
-Add-BambooPlanBranch -PlanKey 'PRJKEY-PLANKEY' -BranchName $BranchName -VcsBranch $VcsBranch
+Add-BambooPlanBranch -PlanKey 'PRJKEY-PLANKEY' -BranchName $BranchName -VcsBranch 'feature/pester'
 
 # Enable/Disable PlanBranches
 Enable-BambooPlanBranch -PlanKey $NewPlanKey -BranchName $BranchName
