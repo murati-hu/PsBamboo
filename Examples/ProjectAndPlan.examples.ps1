@@ -1,6 +1,7 @@
 Import-Module PsBamboo
 
 #region Project Demo
+
     $Server = 'http://localhost:8085'
     $UserName = 'testuser'
     $Password = 'testpassword'
@@ -9,9 +10,11 @@ Import-Module PsBamboo
     Set-BambooServer -Url $Server
     Set-BambooCredential -UserName $UserName -Password $Password
     Get-BambooCurrentUser | Format-List
+
 #endregion
 
 #region Project Demo
+
     Read-Host "Get all Projects - Press ENTER"
     $AllProjects = Get-BambooProject
     $AllProjects | Out-Host
@@ -20,6 +23,7 @@ Import-Module PsBamboo
     $First = $AllProjects | Select -First 1 -ExpandProperty key
     $FirstProject = Get-BambooProject -ProjectKey $First
     $FirstProject | Format-List
+
 #endregion
 
 #region Plan Demo
