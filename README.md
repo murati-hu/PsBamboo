@@ -55,11 +55,15 @@ Stop-BambooQueuedBuild
 
 ## Documentation
 Cmdlets and functions for PsBamboo have their own help PowerShell help, which
-you can read with `help <cmdlet-name>`. Wiki is also added to this project with
+you can read with `help <cmdlet-name>`. [PsBamboo Wiki][wiki] is also added to this project with
 some more information.
 
 ## Versioning
 PsBamboo aims to adhere to [Semantic Versioning 2.0.0][semver].
+
+## Issues
+In case of any issues, raise an [issue ticket][issues] in this repository and/or
+feel free to contribute to this project if you have a possible fix for it.
 
 ## Development
 
@@ -70,7 +74,7 @@ Pull requests are very welcome! Make sure your patches are well tested.
 Ideally create a topic branch for every separate change you make. For
 example:
 
-1. Fork the repo
+1. Fork the [repo][repo]
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
