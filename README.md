@@ -14,44 +14,67 @@ generic cmdlets to access any not yet covered Bamboo REST resources too.
 ## Usage
 ```powershell
 Import-Module PsBamboo
+```
 
-# Set the target server
-Set-BambooServer -Url 'http://bamboo.mydomain.com:8085'
+## Examples
+Try and execute the [`ProjectAndPlan.examples.ps1`][Examples] against your local Bamboo server to see all the cmdlets in action.
 
-# Get all Projects
+### Server login
+```powershell
+$Server = 'http://localhost:8085'
+$UserName = 'testuser'
+$Password = 'testpassword'
+
+# Set the target Bamboo Server
+Set-BambooServer -Url $Server
+# Set login credentials for further cmdlets
+Set-BambooCredential -UserName $UserName -Password $Password
+# Get the current authenticated user details
+Get-BambooCurrentUser
+```
+
+### Project cmdlets
+```powershell
+# List all projects
 Get-BambooProject
+
+# Detail a specific Project defined by the -ProjectKey
+Get-BambooProject -ProjectKey 'PRJKEY'
 ```
 
-Authenticated access
+### Plan cmdlets
 ```powershell
-Set-BambooCredential -UserName <user> -Password <password>
-Get-BambooCurrentUser
-```
-
-All available Cmdlets
-```powershell
-Get-Command -Module PsBamboo | Select Name
-
-Add-BambooPlanBranch
-Copy-BambooPlan
-Disable-BambooPlan
-Disable-BambooPlanBranch
-Enable-BambooPlan
-Enable-BambooPlanBranch
-Expand-BambooResource
-Get-BambooArtifact
-Get-BambooCurrentUser
+# List all Bamboo Plans
 Get-BambooPlan
-Get-BambooPlanBranch
-Get-BambooProject
-Get-BambooQueuedBuild
-Get-BambooResult
-Invoke-BambooRestMethod
-Resume-BambooQueuedBuild
-Set-BambooCredential
-Set-BambooServer
-Stop-BambooQueuedBuild
+
+# List all Bamboo Plans for a specific Project
+Get-BambooPlan -ProjectKey 'PRJKEY'
+
+# Get details for a specific Plan
+Get-BambooPlan -PlanKey 'PRJKEY-PLANKEY'
+
+# Disable/Enable a specific Plan
+Disable-BambooPlan -PlanKey 'PRJKEY-PLANKEY'
+Enable-BambooPlan -PlanKey 'PRJKEY-PLANKEY'
+
+# Clone/Copy a BambooPlan to a new Plan
+Copy-BambooPlan -PlanKey 'PRJKEY-PLANKEY' -NewPlanKey 'PRJKEY-NEWPLAN'
 ```
+
+### Plan-Branch cmdlets
+```powershell
+# Create a new PlanBranch to a VCS-branch
+$BranchName='pester'
+$VcsBranch='feature/pester'
+Add-BambooPlanBranch -PlanKey 'PRJKEY-PLANKEY' -BranchName $BranchName -VcsBranch $VcsBranch
+
+# Enable/Disable PlanBranches
+Enable-BambooPlanBranch -PlanKey $NewPlanKey -BranchName $BranchName
+Disable-BambooPlanBranch -PlanKey $NewPlanKey -BranchName $BranchName
+```
+
+Note: Plan-branches are technically child-plans for regular plans in Bamboo,
+which means most of the Plan cmdlets can be used for PlanBranches too, by passing their PlanKey.
 
 ## Documentation
 Cmdlets and functions for PsBamboo have their own help PowerShell help, which
@@ -89,6 +112,7 @@ Apache License, Version 2.0 (see [LICENSE][LICENSE])
 [repo]: https://bitbucket.org/murati-hu/psbamboo
 [wiki]: https://bitbucket.org/murati-hu/psbamboo/wiki
 [issues]: https://bitbucket.org/murati-hu/psbamboo/issues
+[examples]: Examples/ProjectAndPlan.examples.ps1
 [bamboo]: https://www.atlassian.com/software/bamboo
 [bambooapi]: https://developer.atlassian.com/bamboodev/rest-apis
 [muratiakos]: http://murati.hu
