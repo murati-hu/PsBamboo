@@ -45,8 +45,8 @@ Copy-BambooPlan -PlanKey $FirstPlan -NewPlanKey $NewPlanKey
 
 Write-Host "Manipulate PlanBranches" -ForegroundColor Cyan
 # Add a new PlanBranch
-$BranchName='beta'
-$VcsBranch='feature/beta'
+$BranchName='pester'
+$VcsBranch='feature/pester'
 $NewBranchPlan = Add-BambooPlanBranch -PlanKey $NewPlanKey -BranchName $BranchName -VcsBranch $VcsBranch
 $NewBranchPlan
 
