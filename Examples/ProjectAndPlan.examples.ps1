@@ -4,7 +4,7 @@ $localModule = Join-Path (Split-Path $PSScriptRoot -Parent) "PsBamboo.psm1"
 Import-Module $localModule
 
 
-#region Project Demo
+#region Server login
 
     $Server = 'http://localhost:8085'
     $UserName = 'testuser'
