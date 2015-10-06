@@ -4,7 +4,7 @@
 .DESCRIPTION
 
 .PARAMETER BuildKey
-    Mandatory - BuildKey for the build to be stoppped
+    Mandatory - BuildKey for the build to be stopped
 .EXAMPLE
     Stop-BambooQueuedBuild -BuildKey 'PRJ-PLANKEY-3'
 #>
