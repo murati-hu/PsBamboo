@@ -11,6 +11,15 @@ resources: `Project`, `Plan`, `PlanBranch`, `QueuedBuild`, `Artifact`, `Server`,
 In addition to several already implemented functions, it also provides
 generic Cmdlets to access any not yet covered [Bamboo REST API][bambooapi] resources too.
 
+## Installation
+PsBamboo is available via [PsGet][psget], so you can simply install it with the
+following command:
+```powershell
+Install-Module PsBamboo
+```
+Of course you can download and install the module manually too from
+[Downloads][download]
+
 ## Usage
 ```powershell
 Import-Module PsBamboo
@@ -68,8 +77,8 @@ $BranchName='pester'
 Add-BambooPlanBranch -PlanKey 'PRJKEY-PLANKEY' -BranchName $BranchName -VcsBranch 'feature/pester'
 
 # Enable/Disable PlanBranches
-Enable-BambooPlanBranch -PlanKey $NewPlanKey -BranchName $BranchName
-Disable-BambooPlanBranch -PlanKey $NewPlanKey -BranchName $BranchName
+Enable-BambooPlanBranch -PlanKey 'PRJKEY-PLANKEY' -BranchName $BranchName
+Disable-BambooPlanBranch -PlanKey 'PRJKEY-PLANKEY' -BranchName $BranchName
 ```
 
 Note: Plan-branches are technically child-plans for regular plans in Bamboo,
@@ -117,3 +126,5 @@ Apache License, Version 2.0 (see [LICENSE][LICENSE])
 [muratiakos]: http://murati.hu
 [license]: LICENSE
 [semver]: http://semver.org/
+[psget]: http://psget.net/
+[download]: https://bitbucket.org/murati-hu/psbamboo/get/master.zip
