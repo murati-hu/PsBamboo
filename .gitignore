@@ -1,4 +1,4 @@
-build/
+/build/
 Test.xml
 vendor/packages/
 PsBamboo.sandbox.ps1
