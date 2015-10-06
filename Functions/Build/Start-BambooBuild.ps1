@@ -1,17 +1,20 @@
 <#
 .SYNOPSIS
     Triggers a build for the specified Plan.
+.DESCRIPTION
+    The cmdlet returns the build details, if it succeeds.
 .PARAMETER PlanKey
     Mandatory - PlanKey for the latest build to be started
 .EXAMPLE
-    Stop-BambooBuild -PlanKey 'PRJ-PLANKEY'
+    Start-BambooBuild -PlanKey 'PRJ-PLANKEY'
 #>
-function Stop-BambooBuild {
+function Start-BambooBuild {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)]
         [ValidatePattern('\w+-\w+')]
         [string]$PlanKey
     )
-    Invoke-BambooRestMethod -Resource "queue/$($PlanKey)" -Method Post
+    Invoke-BambooRestMethod -Resource "queue/$($PlanKey)" -Method Post |
+    Expand-BambooResource -ResourceName 'restQueuedBuild'
 }
