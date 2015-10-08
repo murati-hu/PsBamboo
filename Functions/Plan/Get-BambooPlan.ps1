@@ -24,7 +24,6 @@ function Get-BambooPlan {
     }
 
     Invoke-BambooRestMethod -Resource $resource  -Expand 'plans.plan.branches' |
-    Expand-BambooResource -ResourceName 'plan' #|
-    #Add-Member -MemberType AliasProperty PlanKey key -PassThru |
-    #Add-Member -MemberType AliasProperty PlanName name -PassThru
+    Expand-BambooResource -ResourceName 'plan' |
+    Add-ObjectType -TypeName 'PsBamboo.Plan'
 }

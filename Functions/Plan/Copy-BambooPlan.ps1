@@ -23,5 +23,6 @@ function Copy-BambooPlan {
     )
 
     Invoke-BambooRestMethod -Resource "clone/$($PlanKey):$($NewPlanKey)" -Method Put |
-    Expand-BambooResource -ResourceName 'plan'
+    Expand-BambooResource -ResourceName 'plan' |
+    Add-ObjectType -TypeName 'PsBamboo.Plan'
 }
