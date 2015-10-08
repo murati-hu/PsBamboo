@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Configuration>
+  <ViewDefinitions>
+     <View>
+      <Name>PsBamboo.Build</Name>
+      <ViewSelectedBy>
+        <TypeName>PsBamboo.Build</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>buildResultKey</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>state</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>lifeCycleState</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>buildStartedTime</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>buildCompletedDate</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+  </ViewDefinitions>
+</Configuration>
