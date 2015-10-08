@@ -3,8 +3,7 @@ Remove-Module PsBamboo -ErrorAction SilentlyContinue
 $localModule = Join-Path (Split-Path $PSScriptRoot -Parent) "PsBamboo.psm1"
 Import-Module $localModule
 
-
-#region Server login
+#region Server login and Info
 
     $Server = 'http://localhost:8085'
     $UserName = 'testuser'
@@ -12,7 +11,11 @@ Import-Module $localModule
 
     Write-Host "Set Bamboo Server and Login Credentials" -ForegroundColor Cyan
     Set-BambooServer -Url $Server
+    Get-BambooServer
+
     Set-BambooCredential -UserName $UserName -Password $Password
+
+    Get-BambooInfo
     Get-BambooCurrentUser | Format-List
 
 #endregion
@@ -58,7 +61,7 @@ Import-Module $localModule
 #region PlanBranch demo
 
     Write-Host "Manipulate PlanBranches" -ForegroundColor Cyan
-    
+
     Read-Host "Add a new PlanBranch - Press ENTER"
     $BranchName='pester'
     $VcsBranch='feature/pester'
