@@ -4,6 +4,8 @@
 .DESCRIPTION
     If -PlanKey is specified it filters for only those build results.
     By default it returns the latest build results.
+.PARAMETER BuildKey
+    Optional - Key for the exact Bamboo build to get the build results
 .PARAMETER PlanKey
     Optional - Key for the Bamboo Plans to filter build results
 .PARAMETER Build
