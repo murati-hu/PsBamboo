@@ -45,14 +45,14 @@ Import-Module $localModule
 
     Read-Host "Disable Plan and show details - Press ENTER"
     Disable-BambooPlan -PlanKey $FirstPlan
-    Get-BambooPlan -PlanKey $FirstPlan | Format-Table key,name,enabled
+    Get-BambooPlan -PlanKey $FirstPlan | Out-Host
 
     Read-Host "Re-enable Plan and show details - Press ENTER"
     Enable-BambooPlan -PlanKey $FirstPlan
-    Get-BambooPlan -PlanKey $FirstPlan | Format-Table key,name,enabled
+    Get-BambooPlan -PlanKey $FirstPlan | Out-Host
 
-    Read-Host "Copy (Clone) a Plan - Press Enter"
-    $NewPlanKey = "$($FirstPlan)2"
+    $NewPlanKey = "$($FirstPlan)$(Get-Random -Maximum 1000)"
+    Read-Host "Copy (Clone) $FirstPlan to $NewPlanKey Plan - Press Enter"
     $NewPlan = Copy-BambooPlan -PlanKey $FirstPlan -NewPlanKey $NewPlanKey
     $NewPlan | Out-Host
 
@@ -70,10 +70,10 @@ Import-Module $localModule
 
     Read-Host "Enable PlanBranch - Press ENTER"
     Enable-BambooPlanBranch -PlanKey $NewPlanKey -BranchName $BranchName
-    Get-BambooPlanBranch -PlanKey $NewPlanKey -BranchName $BranchName | Format-Table key,name,enabled
+    Get-BambooPlanBranch -PlanKey $NewPlanKey -BranchName $BranchName | Out-Host
 
     Read-Host "Disable PlanBranch - Press ENTER"
     Disable-BambooPlanBranch -PlanKey $NewPlanKey -BranchName $BranchName
-    Get-BambooPlanBranch -PlanKey $NewPlanKey -BranchName $BranchName | Format-Table key,name,enabled
+    Get-BambooPlanBranch -PlanKey $NewPlanKey -BranchName $BranchName | Out-Host
 
 #endregion
