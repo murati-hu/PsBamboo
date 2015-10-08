@@ -19,16 +19,16 @@ Import-Module $localModule
 #region Plan Build Demo
 
     Read-Host "List Builds - Press ENTER"
-    Get-BambooBuild
+    Get-BambooBuild | Out-Host
 
     $FirstPlan = Get-BambooPlan | Select -First 1 -ExpandProperty key
     Read-Host "Start a new build for $FirstPlan - Press ENTER"
-    $newBuild = Start-BambooBuild -PlanKey $FirstPlan
-    $newBuild
+    Start-BambooBuild -PlanKey $FirstPlan | Out-Host
 
-    Write-Host "Enter a suspended build key to Resume the build"
-    Resume-BambooBuild
+    Write-Host "Enter a suspended build key to Resume the build" -ForegroundColor Cyan
+    Resume-BambooBuild | Out-Host
 
-    Write-Host "Enter a queued Build key to Abort the build"
-    Stop-BambooQueuedBuild
+    Write-Host "Enter a queued Build key to Abort the build" -ForegroundColor Cyan
+    Stop-BambooQueuedBuild | Out-Host
+
 #endregion
