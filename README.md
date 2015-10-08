@@ -26,7 +26,7 @@ Import-Module PsBamboo
 ```
 
 ## Examples
-Try and execute the [`ProjectAndPlan.examples.ps1`][examples] against your local Bamboo
+Try and execute the sample scripts in the [Examples folder][examples] against your local Bamboo
 server to see all the Cmdlets in action or call `help` on any of the PsBamboo cmdlets.
 
 ### Server login
@@ -39,6 +39,22 @@ Set-BambooCredential -UserName 'testuser' -Password 'testpassword'
 
 # Get the current authenticated user details
 Get-BambooCurrentUser
+```
+
+### Build cmdlets
+```powershell
+# List all the latest build results
+Get-BambooBuild
+
+# Get the lates build result for a Plan
+Get-BambooBuild -PlanKey 'PRJKEY-PLANKEY'
+
+# Get the all build result for a Plan
+Get-BambooBuild -PlanKey 'PRJKEY-PLANKEY' -All
+
+# Start a new build or resume a pause build
+Start-BambooBuild -PlanKey 'PRJKEY-PLANKEY'
+Resume-BambooBuild -BuildKey 'PRJKEY-PLANKEY-2'
 ```
 
 ### Project cmdlets
@@ -120,7 +136,7 @@ Apache License, Version 2.0 (see [LICENSE][LICENSE])
 [repo]: https://bitbucket.org/murati-hu/psbamboo
 [wiki]: https://bitbucket.org/murati-hu/psbamboo/wiki
 [issues]: https://bitbucket.org/murati-hu/psbamboo/issues
-[examples]: Examples/ProjectAndPlan.examples.ps1
+[examples]: Examples/
 [bamboo]: https://www.atlassian.com/software/bamboo
 [bambooapi]: https://developer.atlassian.com/bamboodev/rest-apis
 [muratiakos]: http://murati.hu
