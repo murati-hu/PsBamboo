@@ -46,10 +46,8 @@ Get-BambooCurrentUser
 # List all the latest build results
 Get-BambooBuild
 
-# Get the lates build result for a Plan
+# Get the latest or all build results for a specific Plan
 Get-BambooBuild -PlanKey 'PRJKEY-PLANKEY'
-
-# Get the all build result for a Plan
 Get-BambooBuild -PlanKey 'PRJKEY-PLANKEY' -All
 
 # Start a new build or resume a pause build
