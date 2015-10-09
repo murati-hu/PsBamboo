@@ -1,7 +1,7 @@
 #
-# Module manifest for 'Posh-XTools' module
-# Created by: Akos Murati, Xero Limited
-# Generated on: 09/25/2015
+# Module manifest for 'PsBamboo' module
+# Created by: Akos Murati <akos@murati.hu>
+# Generated on: 10/04/2015
 #
 
 @{
@@ -66,7 +66,32 @@ Description = 'PowerShell helper module for Bamboo REST services'
 FunctionsToExport = '*-Bamboo*'
 
 # Cmdlets to export from this module
-CmdletsToExport = '*-Bamboo*'
+CmdletsToExport = @(
+    'Get-BambooBuild'
+    'Resume-BambooQueuedBuild'
+    'Add-BambooPlanBranch'
+    'Copy-BambooPlan'
+    'Disable-BambooPlan'
+    'Disable-BambooPlanBranch'
+    'Enable-BambooPlan'
+    'Enable-BambooPlanBranch'
+    'Expand-BambooResource'
+    'Get-BambooArtifact'
+    'Get-BambooCurrentUser'
+    'Get-BambooInfo'
+    'Get-BambooPlan'
+    'Get-BambooPlanBranch'
+    'Get-BambooProject'
+    'Get-BambooQueuedBuild'
+    'Get-BambooResult'
+    'Get-BambooServer'
+    'Invoke-BambooRestMethod'
+    'Resume-BambooBuild'
+    'Set-BambooCredential'
+    'Set-BambooServer'
+    'Start-BambooBuild'
+    'Stop-BambooQueuedBuild'
+)
 
 # Variables to export from this module
 # VariablesToExport = '*'
