@@ -90,6 +90,7 @@ CmdletsToExport = @(
     'Set-BambooCredential'
     'Set-BambooServer'
     'Start-BambooBuild'
+    'Start-BambooCustomBuild'
     'Stop-BambooQueuedBuild'
 )
 
