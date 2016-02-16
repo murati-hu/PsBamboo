@@ -29,8 +29,9 @@ function Start-BambooCustomBuild {
     }
 
     if ($BambooVariables -and $BambooVariables.Keys) {
+        Add-Type -AssemblyName System.Web
         foreach($key in $BambooVariables.Keys) {
-            $UriParams.Add("bamboo.variable.$($key)", $BambooVariables.$key)
+            $UriParams.Add([System.Web.HttpUtility]::UrlEncode("bamboo.variable.$($key)"), [System.Web.HttpUtility]::UrlEncode($BambooVariables.$key))
         }
     }
 
