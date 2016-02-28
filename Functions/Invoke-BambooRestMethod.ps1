@@ -78,7 +78,11 @@ function Invoke-BambooRestMethod {
         Write-Verbose "$Method : $Uri"
         $response = Invoke-RestMethod -Uri $Uri -Method:$Method -Headers:$Headers
     } catch {
-        Write-Error $_.ErrorDetails.Message
+        if ($_.ErrorDetails) {
+            Write-Error $_.ErrorDetails.Message
+        } else {
+            Write-Error $_
+        }
     }
 
     $response
