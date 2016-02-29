@@ -63,11 +63,7 @@ Description = 'PowerShell helper module for Bamboo REST services'
 # NestedModules = @()
 
 # Functions to export from this module
-FunctionsToExport = '*-Bamboo*'
-
-# Cmdlets to export from this module
-CmdletsToExport = @(
-    'Get-BambooBuild'
+FunctionsToExport = @(
     'Resume-BambooQueuedBuild'
     'Add-BambooPlanBranch'
     'Copy-BambooPlan'
@@ -93,6 +89,9 @@ CmdletsToExport = @(
     'Start-BambooCustomBuild'
     'Stop-BambooQueuedBuild'
 )
+
+# Cmdlets to export from this module
+# CmdletsToExport = '*'
 
 # Variables to export from this module
 # VariablesToExport = '*'
