@@ -24,3 +24,4 @@ Set-BambooServer
 Start-BambooBuild
 Start-BambooCustomBuild
 Stop-BambooQueuedBuild
+Add_ObjectType

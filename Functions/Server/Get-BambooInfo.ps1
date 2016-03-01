@@ -1,6 +1,9 @@
 <#
 .SYNOPSIS
     Gets the current Bamboo Server information and version Detail.
+.DESCRIPTION
+    The cmdlet simply returns the
+
 .EXAMPLE
     Get-BambooInfo
 

@@ -1,6 +1,9 @@
 <#
 .SYNOPSIS
     Gets all the artifacts for a specific Bamboo Plan.
+.DESCRIPTION
+    The cmdlet directly returns the artifact XML response from Bamboo
+
 .PARAMETER PlanKey
     Mandatory - Key for the Bamboo Plan.
 .EXAMPLE

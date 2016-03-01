@@ -16,6 +16,10 @@
     Optional - Root node of the XML response that needs to be processed.
     This parameter requires an override, if the root element name is different
     from the -PluralResourceName.
+
+.EXAMPLE
+    Invoke-BambooRestMethod -Resource "plan/$PlanKey/artifact" |
+    Expand-BambooResource -ResourceName 'artifact' |
 #>
 function Expand-BambooResource {
     [CmdletBinding()]
