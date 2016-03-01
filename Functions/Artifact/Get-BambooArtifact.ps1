@@ -21,5 +21,5 @@ function Get-BambooArtifact {
     Invoke-BambooRestMethod -Resource "plan/$PlanKey/artifact" |
     Expand-BambooResource -ResourceName 'artifact' |
     Add-Member -NotePropertyName PlanKey -NotePropertyValue $PlanKey -PassThru |
-    Add-ObjectType -TypeName 'PsBamboo.Artifact'
+    Add_ObjectType -TypeName 'PsBamboo.Artifact'
 }

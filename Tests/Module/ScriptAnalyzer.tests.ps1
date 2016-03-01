@@ -12,7 +12,7 @@ Describe "Script Source analysis" {
     Import-Module PSScriptAnalyzer
 
     $scriptSources | ForEach-Object {
-        Context "Source $($_.Name)" {
+        Context "Source $($_.FullName)" {
             $results = Invoke-ScriptAnalyzer -Path $_.FullName -ErrorVariable $errors
 
             it "should have no errors" {

@@ -5,7 +5,7 @@ $expectedCommands = Import-Csv -Path (Join-Path $Script:FixturePath 'expected_co
 
 Describe "$($Script:ModuleName) Module" {
     It "Should be loaded" {
-        Get-Module $Script:ModuleName | Should Not BeNullOrEmpty`
+        Get-Module $Script:ModuleName | Should Not BeNullOrEmpty
     }
 }
 
