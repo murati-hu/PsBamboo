@@ -16,7 +16,7 @@ ModuleVersion = '1.0.1.0'
 GUID = '85aaff1a-c696-43ad-be1a-53d16477d01d'
 
 # Author of this module
-Author = 'Akos Murati <akos@murati.hu>'
+Author = 'Akos Murati (akos@murati.hu)'
 
 # Company or vendor of this module
 CompanyName = 'murati.hu'
@@ -65,7 +65,6 @@ Description = 'PowerShell helper module for Bamboo REST services to build, resum
 
 # Functions to export from this module
 FunctionsToExport = @(
-    'Resume-BambooQueuedBuild'
     'Add-BambooPlanBranch'
     'Copy-BambooPlan'
     'Disable-BambooPlan'
@@ -100,6 +99,7 @@ FunctionsToExport = @(
 # Aliases to export from this module
 AliasesToExport = @(
     'Get-BambooBuild'
+    'Resume-BambooQueuedBuild'
 )
 
 # DSC resources to export from this module

@@ -3,6 +3,13 @@
 $scriptSources = Get-ChildItem -Path $script:FunctionPath -Filter '*.ps1' -Recurse
 $scriptAnalyzer = Get-Module PSScriptAnalyzer -ListAvailable
 
+$excludeRuleList = @(
+    'PSUseShouldProcessForStateChangingFunctions'
+    'PSAvoidUsingUserNameAndPassWordParams'
+    'PSAvoidUsingPlainTextForPassword'
+    'PSUsePSCredentialType'
+)
+
 if (-Not $scriptAnalyzer) {
     Write-Warning "PSScriptAnalyzer module is not available."
     return
@@ -13,7 +20,7 @@ Describe "Script Source analysis" {
 
     $scriptSources | ForEach-Object {
         Context "Source $($_.FullName)" {
-            $results = Invoke-ScriptAnalyzer -Path $_.FullName -ErrorVariable $errors
+            $results = Invoke-ScriptAnalyzer -Path $_.FullName -ErrorVariable $errors -ExcludeRule $excludeRuleList
 
             it "should have no errors" {
                 $errors | Should BeNullOrEmpty
