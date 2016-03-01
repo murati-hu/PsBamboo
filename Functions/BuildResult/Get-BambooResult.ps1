@@ -83,5 +83,5 @@ function Get-BambooResult {
 
     Invoke-BambooRestMethod -Resource $resource  -Expand 'results.result' |
     Expand-BambooResource -ResourceName 'result' |
-    Add-ObjectType -TypeName 'PsBamboo.Build'
+    Add_ObjectType -TypeName 'PsBamboo.Build'
 }

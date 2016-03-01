@@ -25,5 +25,5 @@ function Get-BambooProject {
 
     Invoke-BambooRestMethod -Resource $resource |
     Expand-BambooResource -ResourceName 'project' |
-    Add-ObjectType -TypeName 'PsBamboo.Project'
+    Add_ObjectType -TypeName 'PsBamboo.Project'
 }

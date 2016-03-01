@@ -1,6 +1,4 @@
 Name
-Get-BambooBuild
-Resume-BambooQueuedBuild
 Add-BambooPlanBranch
 Copy-BambooPlan
 Disable-BambooPlan
@@ -9,6 +7,7 @@ Enable-BambooPlan
 Enable-BambooPlanBranch
 Expand-BambooResource
 Get-BambooArtifact
+Get-BambooBuild
 Get-BambooCurrentUser
 Get-BambooInfo
 Get-BambooPlan
@@ -19,6 +18,7 @@ Get-BambooResult
 Get-BambooServer
 Invoke-BambooRestMethod
 Resume-BambooBuild
+Resume-BambooQueuedBuild
 Set-BambooCredential
 Set-BambooServer
 Start-BambooBuild
