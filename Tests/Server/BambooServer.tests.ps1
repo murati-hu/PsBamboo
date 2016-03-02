@@ -7,7 +7,7 @@ Describe "Bamboo Server cmdlets" {
 
     Context "Get-BambooServer" {
         $defaultUrl = 'http://localhost:8085'
-        it "should have default ur for '$defaultUrl'" {
+        it "should have '$defaultUrl' as the default url" {
             Get-BambooServer | Should Be $defaultUrl
         }
     }
