@@ -39,6 +39,8 @@ function Expand-BambooResource {
 
     )
 
+    if (-Not $Response) { return }
+
     if ($Response | Get-Member $Root) {
         if ($Response.$Root.$PluralResourceName | Get-Member $ResourceName) {
             $response.$Root.$PluralResourceName.$ResourceName
