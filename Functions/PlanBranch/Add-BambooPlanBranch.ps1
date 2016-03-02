@@ -36,5 +36,5 @@ function Add-BambooPlanBranch {
 
     Invoke-BambooRestMethod -Resource "plan/$PlanKey/branch/$BranchName" -Method Put -UriParams @{vcsBranch=$VcsBranch} |
     Expand-BambooResource -ResourceName 'branch' -PluralResourceName 'branches' |
-    Add-ObjectType -TypeName 'PsBamboo.Plan'
+    Add_ObjectType -TypeName 'PsBamboo.Plan'
 }

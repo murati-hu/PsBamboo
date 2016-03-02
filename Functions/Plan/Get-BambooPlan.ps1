@@ -25,5 +25,5 @@ function Get-BambooPlan {
 
     Invoke-BambooRestMethod -Resource $resource  -Expand 'plans.plan.branches' |
     Expand-BambooResource -ResourceName 'plan' |
-    Add-ObjectType -TypeName 'PsBamboo.Plan'
+    Add_ObjectType -TypeName 'PsBamboo.Plan'
 }

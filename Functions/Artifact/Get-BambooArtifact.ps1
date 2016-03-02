@@ -1,6 +1,9 @@
 <#
 .SYNOPSIS
     Gets all the artifacts for a specific Bamboo Plan.
+.DESCRIPTION
+    The cmdlet directly returns the artifact XML response from Bamboo
+
 .PARAMETER PlanKey
     Mandatory - Key for the Bamboo Plan.
 .EXAMPLE
@@ -21,5 +24,5 @@ function Get-BambooArtifact {
     Invoke-BambooRestMethod -Resource "plan/$PlanKey/artifact" |
     Expand-BambooResource -ResourceName 'artifact' |
     Add-Member -NotePropertyName PlanKey -NotePropertyValue $PlanKey -PassThru |
-    Add-ObjectType -TypeName 'PsBamboo.Artifact'
+    Add_ObjectType -TypeName 'PsBamboo.Artifact'
 }

@@ -1,4 +1,5 @@
 /build/
+/.vscode/
 Test.xml
 vendor/packages/
 PsBamboo.sandbox.ps1
