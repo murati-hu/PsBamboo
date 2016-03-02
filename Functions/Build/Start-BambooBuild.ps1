@@ -13,10 +13,8 @@ function Start-BambooBuild {
     param(
         [Parameter(Mandatory)]
         [ValidatePattern('\w+-\w+')]
-        [string]$PlanKey,
-        [psobject]$UriParams=@{}
+        [string]$PlanKey
     )
 
-    Invoke-BambooRestMethod -Resource "queue/$($PlanKey)" -Method Post -UriParams $UriParams |
-    Expand-BambooResource -ResourceName 'restQueuedBuild'
+    Start-BambooCustomBuild -PlanKey $PlanKey
 }
