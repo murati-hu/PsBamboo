@@ -2,8 +2,8 @@ PsBamboo PowerShell module
 ==========================
 
 PsBamboo is a PowerShell module that provides a wrapper for [Bamboo][bamboo]
-[REST API][bambooapi] to allow easier access and manipulation of [Bamboo][bamboo]
-resources in a scriptable and automatable manner.
+[REST API][bambooapi] to allow easier access with auto-paging and
+manipulation of [Bamboo][bamboo] resources in a scriptable and automatable manner.
 
 The module handles both authenticated and anonymous methods and supports the following
 resources: `Project`, `Plan`, `PlanBranch`, `QueuedBuild`, `Artifact`, `Server`, `CurrentUser`
@@ -53,6 +53,9 @@ Get-BambooBuild -PlanKey 'PRJKEY-PLANKEY' -All
 # Start a new build or resume a pause build
 Start-BambooBuild -PlanKey 'PRJKEY-PLANKEY'
 Resume-BambooBuild -BuildKey 'PRJKEY-PLANKEY-2'
+
+#Execute all manual stages for a build
+Start-BambooCustomBuild  -PlanKey 'PRJKEY-PLANKEY' -ExecuteAllStages
 ```
 
 ### Project cmdlets
