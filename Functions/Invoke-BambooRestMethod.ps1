@@ -85,5 +85,9 @@ function Invoke-BambooRestMethod {
         }
     }
 
+    Write-Verbose "Response: $response"
+    if ($response -is [xml]) {
+        Write-Debug ($response.OuterXml -replace '><',">`n<")
+    }
     $response
 }
