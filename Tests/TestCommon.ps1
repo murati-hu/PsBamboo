@@ -1,7 +1,6 @@
 # Common script level variables for tests
 $Script:ModuleName = 'PsBamboo'
 $Script:FunctionPath = Resolve-Path (Join-Path $PSScriptRoot '../Functions')
-$Script:FixturePath = Resolve-Path (Join-Path $PSScriptRoot 'Fixtures')
 
 # Load module from the local filesystem, instead from the ModulePath
 Remove-Module $Script:ModuleName -Force -ErrorAction SilentlyContinue
