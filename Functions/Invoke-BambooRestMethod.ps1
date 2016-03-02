@@ -43,7 +43,8 @@ function Invoke-BambooRestMethod {
         [string]$Credential = $script:BambooCredential,
         [string]$Expand,
         [psobject]$UriParams=@{},
-        [psobject]$Headers=@{}
+        [psobject]$Headers=@{},
+        [psobject]$Body
     )
 
     if ($Expand) {

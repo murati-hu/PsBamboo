@@ -25,7 +25,7 @@ function Expand-BambooResource {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=$True,ValueFromPipeline=$True)]
-        [ValidateNotNullOrEmpty()]
+        [AllowNull()]
         [psobject[]]$Response,
 
         [Parameter(Mandatory)]
@@ -39,7 +39,7 @@ function Expand-BambooResource {
 
     )
 
-    if (-Not $Response) { return }
+    if ($null -eq $Response) { return }
 
     if ($Response | Get-Member $Root) {
         if ($Response.$Root.$PluralResourceName | Get-Member $ResourceName) {
