@@ -5,6 +5,10 @@
     The cmdlet returns the build details, if it succeeds.
 .PARAMETER PlanKey
     Mandatory - PlanKey for the latest build to be started
+.PARAMETER ExecuteAllStages
+    Optional - Switch to execute all manual stages in the build
+.PARAMETER Stage
+    Optional - Name of the stage which should be finished
 .PARAMETER BambooVariables
     Optional - The variables that you wish to pass to the build plan
 .PARAMETER Revision
@@ -18,14 +22,24 @@ function Start-BambooCustomBuild {
         [Parameter(Mandatory)]
         [ValidatePattern('\w+-\w+')]
         [string]$PlanKey,
+        [switch]$ExecuteAllStages,
+        [string]$Stage,
         [psobject]$BambooVariables=@{},
         [string]$Revision
     )
 
     $UriParams = @{}
 
+    if ($ExecuteAllStages) {
+        $UriParams.Add('executeAllStages', 'true')
+    }
+
+    if (-not [string]::IsNullOrWhiteSpace($Stage)) {
+        $UriParams.Add('stage', $Stage)
+    }
+
     if (-not [string]::IsNullOrWhiteSpace($Revision)) {
-        $UriParams.Add("customRevision", $Revision)
+        $UriParams.Add('customRevision', $Revision)
     }
 
     if ($BambooVariables -and $BambooVariables.Keys) {
@@ -35,5 +49,6 @@ function Start-BambooCustomBuild {
         }
     }
 
-    Start-BambooBuild -PlanKey $PlanKey -UriParams $UriParams
+    Invoke-BambooRestMethod -Resource "queue/$($PlanKey)" -Method Post -UriParams $UriParams |
+    Expand-BambooResource -ResourceName 'restQueuedBuild'
 }
