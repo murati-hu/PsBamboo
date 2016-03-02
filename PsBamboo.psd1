@@ -5,26 +5,27 @@
 #
 
 @{
+
 # Script module or binary module file associated with this manifest.
 RootModule = 'PsBamboo.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.1.0'
+ModuleVersion = '1.1.0.0'
 
 # ID used to uniquely identify this module
 GUID = '85aaff1a-c696-43ad-be1a-53d16477d01d'
 
 # Author of this module
-Author = 'akos@murati.hu'
+Author = 'Akos Murati (akos@murati.hu)'
 
 # Company or vendor of this module
 CompanyName = 'murati.hu'
 
 # Copyright statement for this module
-Copyright = '(c) 2015. All rights reserved.'
+Copyright = '(c) 2016 murati.hu. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'PowerShell helper module for Bamboo REST services'
+Description = 'PowerShell helper module for Bamboo REST services to build, resume and clone Bamboo plans and plan-branches.'
 
 # Minimum version of the Windows PowerShell engine required by this module
 # PowerShellVersion = ''
@@ -45,7 +46,7 @@ Description = 'PowerShell helper module for Bamboo REST services'
 # ProcessorArchitecture = ''
 
 # Modules that must be imported into the global environment prior to importing this module
-# RequiredModules = @('')
+# RequiredModules = @()
 
 # Assemblies that must be loaded prior to importing this module
 # RequiredAssemblies = @()
@@ -54,21 +55,16 @@ Description = 'PowerShell helper module for Bamboo REST services'
 # ScriptsToProcess = @()
 
 # Type files (.ps1xml) to be loaded when importing this module
-#TypesToProcess = @()
+# TypesToProcess = @()
 
 # Format files (.ps1xml) to be loaded when importing this module
-#FormatsToProcess = @('')
+# FormatsToProcess = @()
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
 # NestedModules = @()
 
 # Functions to export from this module
-FunctionsToExport = '*-Bamboo*'
-
-# Cmdlets to export from this module
-CmdletsToExport = @(
-    'Get-BambooBuild'
-    'Resume-BambooQueuedBuild'
+FunctionsToExport = @(
     'Add-BambooPlanBranch'
     'Copy-BambooPlan'
     'Disable-BambooPlan'
@@ -94,13 +90,20 @@ CmdletsToExport = @(
     'Stop-BambooQueuedBuild'
 )
 
+# Cmdlets to export from this module
+# CmdletsToExport = '*'
+
 # Variables to export from this module
 # VariablesToExport = '*'
 
 # Aliases to export from this module
 AliasesToExport = @(
     'Get-BambooBuild'
+    'Resume-BambooQueuedBuild'
 )
+
+# DSC resources to export from this module
+# DscResourcesToExport = @()
 
 # List of all modules packaged with this module
 # ModuleList = @()
@@ -108,11 +111,43 @@ AliasesToExport = @(
 # List of all files packaged with this module
 # FileList = @()
 
-# Private data to pass to the module specified in RootModule/ModuleToProcess
-# PrivateData = ''
+# Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
+PrivateData = @{
+
+    PSData = @{
+
+        # Tags applied to this module. These help with module discovery in online galleries.
+        Tags = @(
+            'Build'
+            'Queue'
+            'Artifact'
+            'Plan'
+            'Branch'
+
+            'Bamboo'
+            'Bamboo CI'
+            'REST API'
+            'API'
+        )
+
+        # A URL to the license for this module.
+        LicenseUri = 'https://bitbucket.org/murati-hu/psbamboo/src/master/LICENSE'
+
+        # A URL to the main website for this project.
+        ProjectUri = 'https://bitbucket.org/murati-hu/psbamboo'
+
+        # A URL to an icon representing this module.
+        # IconUri = ''
+
+        # ReleaseNotes of this module
+        # ReleaseNotes = ''
+
+    } # End of PSData hashtable
+
+} # End of PrivateData hashtable
 
 # HelpInfo URI of this module
-# HelpInfoURI = ''
+HelpInfoURI = 'https://bitbucket.org/murati-hu/psbamboo'
 
 # Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
 # DefaultCommandPrefix = ''

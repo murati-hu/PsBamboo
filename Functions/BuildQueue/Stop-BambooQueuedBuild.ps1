@@ -1,6 +1,8 @@
 <#
 .SYNOPSIS
     Stops and removes a queued build.
+.DESCRIPTION
+    The cmdlet doesn't return any value about the stop attempt
 .PARAMETER BuildKey
     Mandatory - Key for the latest build to be aborted
 .EXAMPLE
