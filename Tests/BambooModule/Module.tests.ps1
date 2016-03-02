@@ -1,7 +1,7 @@
 . (Join-Path $PSScriptRoot '../TestCommon.ps1')
 
 $exportedCommands = (Get-Command -Module $Script:ModuleName)
-$expectedCommands = Import-Csv -Path (Join-Path $Script:FixturePath 'expected_commands.csv')
+$expectedCommands = Import-Csv -Path (Join-Path $PSScriptRoot 'expected_commands.csv')
 
 Describe "$($Script:ModuleName) Module" {
     It "Should be loaded" {
