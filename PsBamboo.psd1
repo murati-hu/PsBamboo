@@ -10,7 +10,7 @@
 RootModule = 'PsBamboo.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.1.0.0'
+ModuleVersion = '1.2.0.0'
 
 # ID used to uniquely identify this module
 GUID = '85aaff1a-c696-43ad-be1a-53d16477d01d'
