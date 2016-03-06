@@ -36,6 +36,6 @@ Import-Module $localModule
     Stop-BambooQueuedBuild | Out-Host
 
     Read-Host "Start a new build with full execution (including manual stages too) - Press ENTER"
-    Start-BambooCustomBuild -PlanKey $FirstPlan -ExecuteAllStages | Out-Host
+    Start-BambooBuild -PlanKey $FirstPlan -ExecuteAllStages | Out-Host
 
 #endregion

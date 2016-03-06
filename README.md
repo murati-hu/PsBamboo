@@ -55,7 +55,7 @@ Start-BambooBuild -PlanKey 'PRJKEY-PLANKEY'
 Resume-BambooBuild -BuildKey 'PRJKEY-PLANKEY-2'
 
 #Execute all manual stages for a build
-Start-BambooCustomBuild  -PlanKey 'PRJKEY-PLANKEY' -ExecuteAllStages
+Start-BambooBuild  -PlanKey 'PRJKEY-PLANKEY' -ExecuteAllStages
 ```
 
 ### Project cmdlets
