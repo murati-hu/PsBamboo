@@ -13,7 +13,7 @@ Import-Module $localModule
     Set-BambooServer -Url $Server
     Get-BambooServer
 
-    Set-BambooCredential -UserName $UserName -Password $Password
+    Set-BambooAuthentication -UserName $UserName -Password $Password
 
     Get-BambooInfo
     Get-BambooCurrentUser | Format-List

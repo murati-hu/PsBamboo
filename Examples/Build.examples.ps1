@@ -11,7 +11,7 @@ Import-Module $localModule
 
     Write-Host "Set Bamboo Server and Login Credentials" -ForegroundColor Cyan
     Set-BambooServer -Url $Server
-    Set-BambooCredential -UserName $UserName -Password $Password
+    Set-BambooAuthentication -UserName $UserName -Password $Password
     Get-BambooCurrentUser | Format-List
 
 #endregion
