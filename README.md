@@ -1,5 +1,6 @@
 PsBamboo PowerShell module
 ==========================
+[![Build status](https://ci.appveyor.com/api/projects/status/etxmi7i4qc8qtloe?svg=true)](https://ci.appveyor.com/project/muratiakos/psbamboo)
 
 PsBamboo is a PowerShell module that provides a wrapper for [Bamboo][bamboo]
 [REST API][bambooapi] to allow easy and fast authenticated access to
@@ -120,15 +121,17 @@ feel free to contribute to this project if you have a possible fix for it.
 * Source hosted at [BitBucket][repo]
 * Report issues/questions/feature requests on [Bitbucket Issues][issues]
 
-Pull requests are very welcome! Make sure your patches are well tested.
+Pull requests are very welcome! Make sure your patches are well tested with
+[Pester][pester].
 Ideally create a topic branch for every separate change you make. For
 example:
 
 1. Fork the [repo][repo]
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+4. Make sure `Invoke-Pester` tests are passing with all your changes
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create new Pull Request
 
 ## Authors
 Created and maintained by [Akos Murati][muratiakos] (<akos@murati.hu>).
@@ -146,5 +149,6 @@ Apache License, Version 2.0 (see [LICENSE][LICENSE])
 [license]: LICENSE
 [semver]: http://semver.org/
 [psget]: http://psget.net/
+[pester]: https://github.com/pester/Pester
 [psgallery]: https://www.powershellgallery.com/packages/PsBamboo/
 [download]: https://bitbucket.org/murati-hu/psbamboo/get/master.zip
