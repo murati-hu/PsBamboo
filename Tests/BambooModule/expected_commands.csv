@@ -19,7 +19,7 @@ Get-BambooServer
 Invoke-BambooRestMethod
 Resume-BambooBuild
 Resume-BambooQueuedBuild
-Set-BambooCredential
+Set-BambooAuthentication
 Set-BambooServer
 Start-BambooBuild
 Start-BambooCustomBuild

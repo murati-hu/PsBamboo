@@ -13,10 +13,18 @@
 .PARAMETER ApiVersion
     Optional - REST API version that needs to be targeted for the call,
     for future purposes. Default is the latest.
+
+.PARAMETER AuthenticationMode
+    Optional - Authentication Mode to access Bamboo Server
+.PARAMETER AuthenticationToken
+    Optional - Authentication Token to access Bamboo Server
+
 .PARAMETER UriParams
     Optional - Parameters that needs to be appended to the GET url.
 .PARAMETER Headers
     Optional - HTTP Headers that needs to be added for the REST call.
+.PARAMETER Body
+    Optional - HTTP Body payload
 
 .EXAMPLE
     Invoke-BambooRestMethod -Resource "plan"
@@ -39,25 +47,28 @@ function Invoke-BambooRestMethod {
         [string]$ApiVersion='latest',
         [string]$Server = $script:BambooServer,
         [string]$Uri="$Server/rest/api/$ApiVersion/$Resource",
-        [string]$Authentication=$script:BambooAuthMode,
-        [string]$Credential = $script:BambooCredential,
+
+        [string]$AuthenticationMode=$script:AuthenticationMode,
+        [string]$AuthenticationToken = $script:AuthenticationToken,
+
         [string]$Expand,
         [psobject]$UriParams=@{},
         [psobject]$Headers=@{},
         [psobject]$Body
     )
 
-    if ($Expand) {
-        $UriParams.expand=$Expand
-    }
+    if (-Not $UriParams) { $UriParams = @{} }
+
+    if ($Expand) { $UriParams.expand=$Expand }
 
     if ($Method -match 'Post|Get|Put') {
         $Headers."Content-Type"="application/xml"
     }
 
-    switch ($Authentication) {
+    switch ($AuthenticationMode) {
         "BASIC" {
-            $Headers.Authorization = "$Authentication $Credential"
+            $UriParams.os_authType='basic'
+            $Headers.Authorization = "$AuthenticationMode $AuthenticationToken"
         }
         default {
             Write-Verbose "Accessing Bamboo without credentials."

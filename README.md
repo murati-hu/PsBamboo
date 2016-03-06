@@ -12,8 +12,8 @@ In addition to several already implemented functions, it also provides
 generic Cmdlets to access any not yet covered [Bamboo REST API][bambooapi] resources too.
 
 ## Installation
-PsBamboo is available via [PsGet][psget], so you can simply install it with the
-following command:
+PsBamboo is available via [PsGet][psget] or via [PowerShell Gallery ][psgallery],
+so you can simply install it with the following command:
 ```powershell
 Install-Module PsBamboo
 ```
@@ -35,7 +35,7 @@ server to see all the Cmdlets in action or call `help` on any of the PsBamboo cm
 Set-BambooServer -Url 'http://localhost:8085'
 
 # Set login credentials for further cmdlets
-Set-BambooCredential -UserName 'testuser' -Password 'testpassword'
+Set-BambooAuthentication -Credential (Get-Credential)
 
 # Get the current authenticated user details
 Get-BambooCurrentUser
@@ -144,4 +144,5 @@ Apache License, Version 2.0 (see [LICENSE][LICENSE])
 [license]: LICENSE
 [semver]: http://semver.org/
 [psget]: http://psget.net/
+[psgallery]: https://www.powershellgallery.com/packages/PsBamboo/
 [download]: https://bitbucket.org/murati-hu/psbamboo/get/master.zip
