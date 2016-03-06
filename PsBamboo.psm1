@@ -14,5 +14,5 @@ Get-ChildItem -Path $formatFilter -Recurse | Foreach-Object {
 }
 
 $script:BambooServer = 'http://localhost:8085'
-$script:BambooAuthMode = $null
-$script:BambooCredential = $null
+$script:AuthenticationMode = $null
+$script:AuthenticationToken = $null

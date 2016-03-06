@@ -14,6 +14,8 @@
     state       : RUNNING
 #>
 function Get-BambooInfo {
+    [CmdletBinding()]param()
+
     Invoke-BambooRestMethod -Resource 'info' |
     Expand-BambooResource -ResourceName 'info'
 }

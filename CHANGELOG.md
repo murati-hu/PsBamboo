@@ -4,3 +4,22 @@ Initial version of PSBamboo for Bamboo REST resources.
  - Plan resources: Get, Clone, Disable, Enable
  - PlanBranch resource: Get, Add, Disable, Enable
  - Additional resources: Project, Artifact, Result, QueuedBuilds
+
+## 1.2.0 (Feb 27, 2016)
+- Fixes to `BambooQueuedBuilds`
+- Support to start `CustomBuilds`
+
+## 1.3.0 (Mar 3, 2016)
+- Added paging support to `Get-BambooPlan`
+- New switches to define target `Stage` or `ExecuteAllStages` for custombuilds
+- Improved Error reporting
+- Pipeline fixes
+
+## 2.0.0 (Mar 6, 2016)
+- Major Authentication changes to enable direct Token Usage and discontinue
+direct UserName and Password functions to fulfill PSGallery requirements
+- Removed `Set-BambooCredential` function
+- Introduced `Set-BambooAuthentication` with `PSCredential` and with direct
+`AuthenticationToken`
+- `BambooCustomBuild` parameters moved to `BambooBuild`
+- Removed `Start-BambooCustomBuild`
