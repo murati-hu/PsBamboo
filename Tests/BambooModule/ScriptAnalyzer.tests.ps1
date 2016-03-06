@@ -5,9 +5,6 @@ $scriptAnalyzer = Get-Module PSScriptAnalyzer -ListAvailable
 
 $excludeRuleList = @(
     'PSUseShouldProcessForStateChangingFunctions'
-    'PSAvoidUsingUserNameAndPassWordParams'
-    'PSAvoidUsingPlainTextForPassword'
-    'PSUsePSCredentialType'
 )
 
 if (-Not $scriptAnalyzer) {

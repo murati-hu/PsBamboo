@@ -1,7 +1,5 @@
 . (Join-Path $PSScriptRoot '../TestCommon.ps1')
 
-#
-
 Describe "Bamboo Server cmdlets" {
     $expectedUrl = 'http://this-is-my-expected-url.com:1234'
 
@@ -34,19 +32,6 @@ Describe "Bamboo Server cmdlets" {
 
             { Set-BambooServer -Url 'wrongurl' } | Should Throw
             Get-BambooServer | Should Be $expectedUrl
-        }
-    }
-
-    Context "Set-BambooCredential" {
-        $expectedToken='VXNlck5hbWU6UGFzc3dvcmQ='
-        Set-BambooCredential -UserName 'UserName' -Password 'Password'
-
-        it "should be passed to Invoke-RestMethod as a Header via Invoke-BambooRestMethod" {
-            Mock Invoke-RestMethod { return $Headers } -ModuleName PsBamboo
-
-            $dummy = Invoke-BambooRestMethod -Resource 'dummy'
-            $dummy | Should Not BeNullOrEmpty
-            $dummy.Authorization | Should Be "BASIC $expectedToken"
         }
     }
 }

@@ -1,19 +1,22 @@
 PsBamboo PowerShell module
 ==========================
+[![Build status](https://ci.appveyor.com/api/projects/status/etxmi7i4qc8qtloe?svg=true)](https://ci.appveyor.com/project/muratiakos/psbamboo)
 
 PsBamboo is a PowerShell module that provides a wrapper for [Bamboo][bamboo]
-[REST API][bambooapi] to allow easier access with auto-paging and
-manipulation of [Bamboo][bamboo] resources in a scriptable and automatable manner.
+[REST API][bambooapi] to allow easy and fast authenticated access to
+[Bamboo CI][bamboo] in a scriptable and automatable manner.
 
-The module handles both authenticated and anonymous methods and supports the following
-resources: `Project`, `Plan`, `PlanBranch`, `QueuedBuild`, `Artifact`, `Server`, `CurrentUser`
+The module handles both authenticated and anonymous methods, it supports paged
+reading and manipulation of the following [Bamboo][bamboo] resources:
+`Project`, `Plan`, `PlanBranch`, `Build`, `Artifact`, `Server`, `CurrentUser`
 
 In addition to several already implemented functions, it also provides
-generic Cmdlets to access any not yet covered [Bamboo REST API][bambooapi] resources too.
+generic Cmdlets to access any not yet covered [Bamboo REST API][bambooapi]
+resources too.
 
 ## Installation
-PsBamboo is available via [PsGet][psget], so you can simply install it with the
-following command:
+PsBamboo is available via [PsGet][psget] or via [PowerShell Gallery ][psgallery],
+so you can simply install it with the following command:
 ```powershell
 Install-Module PsBamboo
 ```
@@ -29,13 +32,13 @@ Import-Module PsBamboo
 Try and execute the sample scripts in the [Examples folder][examples] against your local Bamboo
 server to see all the Cmdlets in action or call `help` on any of the PsBamboo cmdlets.
 
-### Server login
+### Server and Authentication
 ```powershell
 # Set the target Bamboo Server
 Set-BambooServer -Url 'http://localhost:8085'
 
 # Set login credentials for further cmdlets
-Set-BambooCredential -UserName 'testuser' -Password 'testpassword'
+Set-BambooAuthentication -Credential (Get-Credential)
 
 # Get the current authenticated user details
 Get-BambooCurrentUser
@@ -55,7 +58,7 @@ Start-BambooBuild -PlanKey 'PRJKEY-PLANKEY'
 Resume-BambooBuild -BuildKey 'PRJKEY-PLANKEY-2'
 
 #Execute all manual stages for a build
-Start-BambooCustomBuild  -PlanKey 'PRJKEY-PLANKEY' -ExecuteAllStages
+Start-BambooBuild  -PlanKey 'PRJKEY-PLANKEY' -ExecuteAllStages
 ```
 
 ### Project cmdlets
@@ -118,15 +121,17 @@ feel free to contribute to this project if you have a possible fix for it.
 * Source hosted at [BitBucket][repo]
 * Report issues/questions/feature requests on [Bitbucket Issues][issues]
 
-Pull requests are very welcome! Make sure your patches are well tested.
+Pull requests are very welcome! Make sure your patches are well tested with
+[Pester][pester].
 Ideally create a topic branch for every separate change you make. For
 example:
 
 1. Fork the [repo][repo]
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+4. Make sure `Invoke-Pester` tests are passing with all your changes
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create new Pull Request
 
 ## Authors
 Created and maintained by [Akos Murati][muratiakos] (<akos@murati.hu>).
@@ -144,4 +149,6 @@ Apache License, Version 2.0 (see [LICENSE][LICENSE])
 [license]: LICENSE
 [semver]: http://semver.org/
 [psget]: http://psget.net/
+[pester]: https://github.com/pester/Pester
+[psgallery]: https://www.powershellgallery.com/packages/PsBamboo/
 [download]: https://bitbucket.org/murati-hu/psbamboo/get/master.zip
