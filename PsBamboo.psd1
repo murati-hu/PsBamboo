@@ -86,7 +86,6 @@ FunctionsToExport = @(
     'Set-BambooAuthentication'
     'Set-BambooServer'
     'Start-BambooBuild'
-    'Start-BambooCustomBuild'
     'Stop-BambooQueuedBuild'
 )
 

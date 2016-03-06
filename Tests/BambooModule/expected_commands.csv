@@ -22,6 +22,5 @@ Resume-BambooQueuedBuild
 Set-BambooAuthentication
 Set-BambooServer
 Start-BambooBuild
-Start-BambooCustomBuild
 Stop-BambooQueuedBuild
 Add_ObjectType
