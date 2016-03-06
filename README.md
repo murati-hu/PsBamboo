@@ -2,14 +2,16 @@ PsBamboo PowerShell module
 ==========================
 
 PsBamboo is a PowerShell module that provides a wrapper for [Bamboo][bamboo]
-[REST API][bambooapi] to allow easier access with auto-paging and
-manipulation of [Bamboo][bamboo] resources in a scriptable and automatable manner.
+[REST API][bambooapi] to allow easy and fast authenticated access to
+[Bamboo CI][bamboo] in a scriptable and automatable manner.
 
-The module handles both authenticated and anonymous methods and supports the following
-resources: `Project`, `Plan`, `PlanBranch`, `QueuedBuild`, `Artifact`, `Server`, `CurrentUser`
+The module handles both authenticated and anonymous methods, it supports paged
+reading and manipulation of the following [Bamboo][bamboo] resources:
+`Project`, `Plan`, `PlanBranch`, `Build`, `Artifact`, `Server`, `CurrentUser`
 
 In addition to several already implemented functions, it also provides
-generic Cmdlets to access any not yet covered [Bamboo REST API][bambooapi] resources too.
+generic Cmdlets to access any not yet covered [Bamboo REST API][bambooapi]
+resources too.
 
 ## Installation
 PsBamboo is available via [PsGet][psget] or via [PowerShell Gallery ][psgallery],
@@ -29,7 +31,7 @@ Import-Module PsBamboo
 Try and execute the sample scripts in the [Examples folder][examples] against your local Bamboo
 server to see all the Cmdlets in action or call `help` on any of the PsBamboo cmdlets.
 
-### Server login
+### Server and Authentication
 ```powershell
 # Set the target Bamboo Server
 Set-BambooServer -Url 'http://localhost:8085'
