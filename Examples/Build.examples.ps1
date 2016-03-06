@@ -1,3 +1,11 @@
+param(
+    [Parameter()]
+    [string]$Server = 'http://localhost:8085',
+
+    [Parameter(Mandatory=$true)]
+    [pscredential]$Credential
+)
+
 # Use local module for the examples
 Remove-Module PsBamboo -ErrorAction SilentlyContinue
 $localModule = Join-Path (Split-Path $PSScriptRoot -Parent) "PsBamboo.psm1"
@@ -5,13 +13,9 @@ Import-Module $localModule
 
 #region Server login
 
-    $Server = 'http://localhost:8085'
-    $UserName = 'testuser'
-    $Password = 'testpassword'
-
     Write-Host "Set Bamboo Server and Login Credentials" -ForegroundColor Cyan
     Set-BambooServer -Url $Server
-    Set-BambooAuthentication -UserName $UserName -Password $Password
+    Set-BambooAuthentication -Credential $Credential
     Get-BambooCurrentUser | Format-List
 
 #endregion

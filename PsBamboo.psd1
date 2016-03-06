@@ -10,7 +10,7 @@
 RootModule = 'PsBamboo.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.3.0.0'
+ModuleVersion = '2.0.0.0'
 
 # ID used to uniquely identify this module
 GUID = '85aaff1a-c696-43ad-be1a-53d16477d01d'
@@ -83,7 +83,7 @@ FunctionsToExport = @(
     'Get-BambooServer'
     'Invoke-BambooRestMethod'
     'Resume-BambooBuild'
-    'Set-BambooCredential'
+    'Set-BambooAuthentication'
     'Set-BambooServer'
     'Start-BambooBuild'
     'Start-BambooCustomBuild'
