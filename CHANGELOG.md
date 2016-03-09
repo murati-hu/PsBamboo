@@ -23,3 +23,6 @@ direct UserName and Password functions to fulfill PSGallery requirements
 `AuthenticationToken`
 - `BambooCustomBuild` parameters moved to `BambooBuild`
 - Removed `Start-BambooCustomBuild`
+
+## 2.0.1 (Mar 9, 2016)
+- Fix to set `Content-Type` via Invoke-RestMethod and enforce basic response parsing  
