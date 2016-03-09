@@ -52,6 +52,8 @@ function Invoke-BambooRestMethod {
         [string]$AuthenticationToken = $script:AuthenticationToken,
 
         [string]$Expand,
+        [string]$ContentType='application/xml',
+        
         [psobject]$UriParams=@{},
         [psobject]$Headers=@{},
         [psobject]$Body
@@ -60,10 +62,6 @@ function Invoke-BambooRestMethod {
     if (-Not $UriParams) { $UriParams = @{} }
 
     if ($Expand) { $UriParams.expand=$Expand }
-
-    if ($Method -match 'Post|Get|Put') {
-        $Headers."Content-Type"="application/xml"
-    }
 
     switch ($AuthenticationMode) {
         "BASIC" {
@@ -88,7 +86,7 @@ function Invoke-BambooRestMethod {
 
     try {
         Write-Verbose "$Method : $Uri"
-        $response = Invoke-RestMethod -Uri $Uri -Method:$Method -Headers:$Headers
+        $response = Invoke-RestMethod -Uri $Uri -Method:$Method -Headers:$Headers -DisableKeepAlive -UseBasicParsing -ContentType $ContentType
     } catch {
         if ($_.ErrorDetails) {
             Write-Error $_.ErrorDetails.Message
