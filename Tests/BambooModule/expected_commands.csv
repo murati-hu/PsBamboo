@@ -8,6 +8,7 @@ Enable-BambooPlanBranch
 Expand-BambooResource
 Get-BambooArtifact
 Get-BambooBuild
+Get-BambooBuildLog
 Get-BambooCurrentUser
 Get-BambooInfo
 Get-BambooPlan
@@ -15,6 +16,7 @@ Get-BambooPlanBranch
 Get-BambooProject
 Get-BambooQueuedBuild
 Get-BambooResult
+Get-BambooResultLog
 Get-BambooServer
 Invoke-BambooRestMethod
 Resume-BambooBuild
