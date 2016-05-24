@@ -51,7 +51,7 @@ function Get-BambooBuildLog {
         $Build = $Matches[2]
     }
 
-    $buildResult = Get-BambooBuild -PlanKey $PlanKey -Build $Build
+    $buildResult = Get-BambooResult -PlanKey $PlanKey -Build $Build
     $logUrl = "$($script:BambooServer)/download/$PlanKey-$StageKey/build_logs/$PlanKey-$StageKey-$($buildResult.buildNumber).log"
     (Invoke-WebRequest -Uri $logUrl -UseBasicParsing -ErrorAction Stop).Content
 }
