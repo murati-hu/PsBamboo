@@ -10,7 +10,7 @@
 RootModule = 'PsBamboo.psm1'
 
 # Version number of this module.
-ModuleVersion = '2.1.0.0'
+ModuleVersion = '2.2.0.0'
 
 # ID used to uniquely identify this module
 GUID = '85aaff1a-c696-43ad-be1a-53d16477d01d'
@@ -80,6 +80,7 @@ FunctionsToExport = @(
     'Get-BambooProject'
     'Get-BambooQueuedBuild'
     'Get-BambooResult'
+    'Get-BambooBuildLog'
     'Get-BambooServer'
     'Invoke-BambooRestMethod'
     'Resume-BambooBuild'
@@ -98,6 +99,7 @@ FunctionsToExport = @(
 # Aliases to export from this module
 AliasesToExport = @(
     'Get-BambooBuild'
+    'Get-BambooResultLog'
     'Resume-BambooQueuedBuild'
 )
 
@@ -130,10 +132,10 @@ PrivateData = @{
         )
 
         # A URL to the license for this module.
-        LicenseUri = 'https://bitbucket.org/murati-hu/psbamboo/src/master/LICENSE'
+        LicenseUri = 'https://github.com/murati-hu/PsBamboo/src/master/LICENSE'
 
         # A URL to the main website for this project.
-        ProjectUri = 'https://bitbucket.org/murati-hu/psbamboo'
+        ProjectUri = 'https://github.com/murati-hu/PsBamboo'
 
         # A URL to an icon representing this module.
         # IconUri = ''
@@ -146,7 +148,7 @@ PrivateData = @{
 } # End of PrivateData hashtable
 
 # HelpInfo URI of this module
-HelpInfoURI = 'https://bitbucket.org/murati-hu/psbamboo'
+HelpInfoURI = 'https://github.com/murati-hu/PsBamboo'
 
 # Default prefix for commands exported from this module. Override the default prefix using Import-Module -Prefix.
 # DefaultCommandPrefix = ''
