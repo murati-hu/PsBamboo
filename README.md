@@ -32,6 +32,8 @@ Import-Module PsBamboo
 Try and execute the sample scripts in the [Examples folder][examples] against your local Bamboo
 server to see all the Cmdlets in action or call `help` on any of the PsBamboo cmdlets.
 
+![Intro](https://cloud.githubusercontent.com/assets/2268036/15780912/eaf4bb92-29f7-11e6-8fdd-a7f562b68b71.gif)
+
 ### Server and Authentication
 ```powershell
 # Set the target Bamboo Server
@@ -57,9 +59,14 @@ Get-BambooBuild -PlanKey 'PRJKEY-PLANKEY' -All
 Start-BambooBuild -PlanKey 'PRJKEY-PLANKEY'
 Resume-BambooBuild -BuildKey 'PRJKEY-PLANKEY-2'
 
-#Execute all manual stages for a build
+# Execute all manual stages for a build
 Start-BambooBuild  -PlanKey 'PRJKEY-PLANKEY' -ExecuteAllStages
+
+# Read logs from a specific build job
+Get-BambooBuildLog -PlanKey 'PRJKEY-PLANKEY' -StageKey JOB1
 ```
+
+![Log and Resume](https://cloud.githubusercontent.com/assets/2268036/15780913/eafbf89e-29f7-11e6-8b0b-6d40ba7bc1a7.gif)
 
 ### Project cmdlets
 ```powershell
