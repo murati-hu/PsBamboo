@@ -73,6 +73,10 @@ function Invoke-BambooRestMethod {
         }
     }
 
+    if ($ContentType -eq 'application/json'){
+        $Uri = -Join ($Uri, '.json')
+    }
+
     if ($UriParams -and $UriParams.Keys) {
         $Params = ''
         foreach($key in $UriParams.Keys) {

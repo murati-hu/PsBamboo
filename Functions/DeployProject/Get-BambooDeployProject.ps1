@@ -24,6 +24,6 @@ function Get-BambooDeployProject {
     }
 
     Invoke-BambooRestMethod -Resource $resource |
-    Expand-BambooResource -ResourceName 'project' |
+    Expand-BambooResource -ResourceName 'deploymentproject' |
     Add_ObjectType -TypeName 'PsBamboo.DeployProject'
 }

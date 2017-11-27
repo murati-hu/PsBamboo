@@ -11,7 +11,7 @@
           <TableRowEntry>
             <TableColumnItems>
               <TableColumnItem>
-                <PropertyName>key</PropertyName>
+                <PropertyName>id</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
                 <PropertyName>name</PropertyName>
