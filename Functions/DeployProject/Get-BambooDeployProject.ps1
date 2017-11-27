@@ -18,12 +18,14 @@ function Get-BambooDeployProject {
         [string]$DeploymentProjectId
     )
 
+    $ContentType = 'application/json'
+    Write-Warning "Get-BambooDeployProject: The Bamboo API for 'Deploy Projects' only supports JSON response format. Using content-type: $ContentType"
+
     $resource = 'deploy/project/all'
     if ($DeploymentProjectId) {
         $resource = "deploy/project/$DeploymentProjectId"
     }
 
-    Invoke-BambooRestMethod -Resource $resource |
-    Expand-BambooResource -ResourceName 'deploymentproject' |
+    Invoke-BambooRestMethod -Resource $resource -ContentType $ContentType |
     Add_ObjectType -TypeName 'PsBamboo.DeployProject'
 }
