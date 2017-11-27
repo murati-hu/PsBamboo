@@ -52,7 +52,7 @@ function Invoke-BambooRestMethod {
         [string]$AuthenticationToken = $script:AuthenticationToken,
 
         [string]$Expand,
-        [string]$ContentType='application/json',
+        [string]$ContentType='application/xml',
         
         [psobject]$UriParams=@{},
         [psobject]$Headers=@{},
