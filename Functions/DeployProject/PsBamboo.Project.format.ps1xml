@@ -16,6 +16,9 @@
               <TableColumnItem>
                 <PropertyName>name</PropertyName>
               </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>description</PropertyName>
+              </TableColumnItem>              
             </TableColumnItems>
           </TableRowEntry>
         </TableRowEntries>
