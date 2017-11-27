@@ -18,7 +18,7 @@ function Get-BambooDeployProject {
         [string]$DeploymentProjectId
     )
 
-    $resource = 'deploy/project'
+    $resource = 'deploy/project/all'
     if ($DeploymentProjectId) {
         $resource = "deploy/project/$DeploymentProjectId"
     }
