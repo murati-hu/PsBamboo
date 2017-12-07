@@ -1,6 +1,6 @@
 PsBamboo PowerShell module
 ==========================
-[![Build status](https://ci.appveyor.com/api/projects/status/etxmi7i4qc8qtloe?svg=true)](https://ci.appveyor.com/project/muratiakos/psbamboo)
+[![Build status](https://ci.appveyor.com/api/projects/status/9ytvm71ff50qo362?svg=true)](https://ci.appveyor.com/project/muratiakos/psbamboo-vfuv4)
 
 PsBamboo is a PowerShell module that provides a wrapper for [Bamboo][bamboo]
 [REST API][bambooapi] to allow easy and fast authenticated access to
