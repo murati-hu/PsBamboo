@@ -74,6 +74,7 @@ FunctionsToExport = @(
     'Expand-BambooResource'
     'Get-BambooArtifact'
     'Get-BambooCurrentUser'
+    'Get-BambooDeployEnvironmentResult'
     'Get-BambooDeployProject'    
     'Get-BambooInfo'
     'Get-BambooPlan'
