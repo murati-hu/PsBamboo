@@ -15,15 +15,27 @@ function Get-BambooProject {
     param(
         [Parameter()]
         [ValidatePattern('\w+')]
-        [string]$ProjectKey
+        [string]$ProjectKey,
+        [Parameter()]
+        [switch]$JsonResponse
     )
+
+    $ContentType = 'application/xml'
+    
+    if ($JsonResponse -eq $True){
+        $ContentType = 'application/json'
+    }
 
     $resource = 'project'
     if ($ProjectKey) {
         $resource = "project/$ProjectKey"
     }
 
-    Invoke-BambooRestMethod -Resource $resource |
-    Expand-BambooResource -ResourceName 'project' |
-    Add_ObjectType -TypeName 'PsBamboo.Project'
+    $response = Invoke-BambooRestMethod -Resource $resource -ContentType $ContentType 
+    
+    if (-not $JsonResponse){
+        $response = $response | Expand-BambooResource -ResourceName 'project'
+    }
+
+    $response | Add_ObjectType -TypeName 'PsBamboo.Project'
 }
