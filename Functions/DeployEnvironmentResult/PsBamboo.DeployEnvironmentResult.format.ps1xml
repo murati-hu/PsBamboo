@@ -34,10 +34,10 @@
           <TableRowEntry>
             <TableColumnItems>
               <TableColumnItem>
-                <ScriptBlock>($_.key.key -split '-')[0]</ScriptBlock>
+                <ScriptBlock>($_.key.entityKey.key -split '-')[0]</ScriptBlock>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>id</PropertyName>
+                <ScriptBlock>($_.key.entityKey.key -split '-')[1]</ScriptBlock>
               </TableColumnItem>
               <TableColumnItem>
                 <ScriptBlock>($_.deploymentVersion.items[0].planResultKey.key)</ScriptBlock>
