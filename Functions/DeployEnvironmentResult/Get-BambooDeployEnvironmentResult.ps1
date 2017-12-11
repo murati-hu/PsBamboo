@@ -30,7 +30,37 @@ function Get-BambooDeployEnvironmentResult {
 
     $resource = "deploy/environment/$DeployEnvironmentId/results"
 
-    Invoke-BambooRestMethod -Resource $resource -ContentType $ContentType |
-    Expand-BambooResource -ResourceName 'results' |
-    Add_ObjectType -TypeName 'PsBamboo.DeployEnvironmentResult'    
+    #Pagination loop variables
+    $moreItem = $null
+    $lastIndex = $null
+    $isSameLoop = $null
+    $uriParams=@{
+        'start-index' = 0
+    }
+
+    Do {
+        $result = $null
+        $result = Invoke-BambooRestMethod -Resource $resource -ContentType $ContentType -UriParams $uriParams 
+        
+        $result | Expand-BambooResource -ResourceName 'results' |
+        Add_ObjectType -TypeName 'PsBamboo.DeployEnvironmentResult'   
+        
+        #Adjust Pagination
+        $page = $null
+        $isSameLoop = $True
+        
+        if ($result -and ($result | Get-Member 'results')) {
+            $page = $result | Select-Object size, 'start-index', 'max-result'
+
+            $uriParams.'start-index' = ([int]$page.'start-index') + ([int]$page.'max-result')
+            $moreItem = ([int]$page.size) -gt ([int]$uriParams.'start-index')
+            Write-Verbose "More pages: $moreItem for $page"
+
+            $isSameLoop = $lastIndex -eq $page.'start-index'
+            Write-Verbose "Start-index loop check: '$lastIndex == $($page.'start-index')' => $isSameLoop"
+
+            $lastIndex = $page.'start-index'
+        }
+
+    } while ($moreItem -and !$isSameLoop)
 }

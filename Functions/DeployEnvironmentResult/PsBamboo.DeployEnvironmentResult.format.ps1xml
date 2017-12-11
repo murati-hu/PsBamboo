@@ -16,7 +16,10 @@
           </TableColumnHeader>
           <TableColumnHeader>
             <Label>buildPlanResultKey</Label>
-          </TableColumnHeader>          
+          </TableColumnHeader> 
+          <TableColumnHeader>
+            <Label>deploymentVersionName</Label>
+          </TableColumnHeader>                       
           <TableColumnHeader>
             <Label>deploymentState</Label>
           </TableColumnHeader>
@@ -41,7 +44,10 @@
               </TableColumnItem>
               <TableColumnItem>
                 <ScriptBlock>($_.deploymentVersion.items[0].planResultKey.key)</ScriptBlock>
-              </TableColumnItem>              
+              </TableColumnItem>     
+              <TableColumnItem>
+                <ScriptBlock>($_.deploymentVersionName)</ScriptBlock>
+              </TableColumnItem>                         
               <TableColumnItem>
                 <PropertyName>deploymentState</PropertyName>
               </TableColumnItem>
@@ -49,10 +55,10 @@
                 <PropertyName>lifeCycleState</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <ScriptBlock>((Get-Date '1/1/1970').AddMilliseconds($_.startedDate).ToUniversalTime().ToString("yyyyMMddTHHmmssfffffffZ"))</ScriptBlock>
+                <ScriptBlock>((Get-Date '1/1/1970').AddMilliseconds($_.startedDate).ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss"))</ScriptBlock>
               </TableColumnItem>
               <TableColumnItem>
-                <ScriptBlock>((Get-Date '1/1/1970').AddMilliseconds($_.finishedDate).ToUniversalTime().ToString("yyyyMMddTHHmmssfffffffZ"))</ScriptBlock>
+                <ScriptBlock>((Get-Date '1/1/1970').AddMilliseconds($_.finishedDate).ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss"))</ScriptBlock>
               </TableColumnItem>              
             </TableColumnItems>
           </TableRowEntry>
