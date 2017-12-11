@@ -7,6 +7,26 @@
         <TypeName>PsBamboo.DeployEnvironmentResult</TypeName>
       </ViewSelectedBy>
       <TableControl>
+        <TableHeaders>
+          <TableColumnHeader>
+            <Label>id</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>name</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>deploymentState</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>lifeCycleState</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>startedDate</Label>
+          </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>finishedDate</Label>
+          </TableColumnHeader>          
+        </TableHeaders>
         <TableRowEntries>
           <TableRowEntry>
             <TableColumnItems>
@@ -23,10 +43,10 @@
                 <PropertyName>lifeCycleState</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>startedDate</PropertyName>
+                <ScriptBlock>((Get-Date '1/1/1970').AddMilliseconds($_.startedDate))</ScriptBlock>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>finishedDate</PropertyName>
+                <ScriptBlock>((Get-Date '1/1/1970').AddMilliseconds($_.finishedDate))</ScriptBlock>
               </TableColumnItem>              
             </TableColumnItems>
           </TableRowEntry>
