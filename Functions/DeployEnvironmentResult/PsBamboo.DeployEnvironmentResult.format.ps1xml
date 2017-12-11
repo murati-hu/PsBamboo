@@ -9,11 +9,14 @@
       <TableControl>
         <TableHeaders>
           <TableColumnHeader>
-            <Label>id</Label>
+            <Label>deployProjectId</Label>
           </TableColumnHeader>
           <TableColumnHeader>
-            <Label>name</Label>
+            <Label>environmentId</Label>
           </TableColumnHeader>
+          <TableColumnHeader>
+            <Label>buildPlanResultKey</Label>
+          </TableColumnHeader>          
           <TableColumnHeader>
             <Label>deploymentState</Label>
           </TableColumnHeader>
@@ -31,11 +34,14 @@
           <TableRowEntry>
             <TableColumnItems>
               <TableColumnItem>
+                <ScriptBlock>($_.key.key -split '-')[0]</ScriptBlock>
+              </TableColumnItem>
+              <TableColumnItem>
                 <PropertyName>id</PropertyName>
               </TableColumnItem>
               <TableColumnItem>
-                <PropertyName>name</PropertyName>
-              </TableColumnItem>
+                <ScriptBlock>($_.deploymentVersion.items[0].planResultKey.key)</ScriptBlock>
+              </TableColumnItem>              
               <TableColumnItem>
                 <PropertyName>deploymentState</PropertyName>
               </TableColumnItem>
