@@ -42,7 +42,7 @@ function Get-BambooDeployEnvironmentResult {
         $result = $null
         $result = Invoke-BambooRestMethod -Resource $resource -ContentType $ContentType -UriParams $uriParams 
         
-        $result | Expand-BambooResource -ResourceName 'results' |
+        $result | Expand-BambooResource -ResourceName 'results' -ContentType $ContentType |
         Add_ObjectType -TypeName 'PsBamboo.DeployEnvironmentResult'   
         
         #Adjust Pagination
