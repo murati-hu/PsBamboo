@@ -17,19 +17,13 @@ function Get-BambooDeployProjectEnvironment {
     param(
         [Parameter()]
         [ValidatePattern('\w+')]
-        [string]$DeploymentProjectId,        
-        [Parameter()]
-        [ValidatePattern('\w+')]
-        [string]$EnvironmentId
+        [string]$DeploymentProjectId
     )
 
     $ContentType = 'application/json'
     Write-Warning "Get-BambooDeployProjectEnvironment: The Bamboo API for 'Deploy Projects' only supports JSON response format. Using content-type: $ContentType"
 
     $resource = "deploy/project/$DeploymentProjectId"
-    #if ($EnvironmentId) {
-    #    $resource = "deploy/project/$EnvironmentId"
-    #}
 
     Invoke-BambooRestMethod -Resource $resource -ContentType $ContentType | Expand-BambooResource -ResourceName 'environments' -ContentType $ContentType |
     Add_ObjectType -TypeName 'PsBamboo.DeployEnvironment'   
