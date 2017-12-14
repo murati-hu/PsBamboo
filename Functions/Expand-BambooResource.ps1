@@ -44,13 +44,9 @@ function Expand-BambooResource {
 
     if ($null -eq $Response) { return }
 
-    if ($ContentType -eq 'application/json') {
-
-        if (($Response.PSobject.Properties | ForEach-Object {$_.Name}) -contains "size"){
-            if ($Response.size -eq 0) { 
-                Write-Verbose "Expand-BambooResource: Empty JSON response returned"
-                return 
-            }
+     if ($ContentType -eq 'application/json') {
+        if ($Response.size -eq 0) { 
+            return 
         }
     }
 
