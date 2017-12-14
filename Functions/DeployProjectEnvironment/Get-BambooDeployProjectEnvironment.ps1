@@ -25,7 +25,7 @@ function Get-BambooDeployProjectEnvironment {
 
     $resource = "deploy/project/$DeploymentProjectId"
 
-    Invoke-BambooRestMethod -Resource $resource -ContentType $ContentType | Expand-BambooResource -ResourceName 'environments' -ContentType $ContentType |
+    Invoke-BambooRestMethod -Resource $resource -ContentType $ContentType | Expand-BambooResource -ResourceName 'environments' |
     Add_ObjectType -TypeName 'PsBamboo.DeployEnvironment'   
 
 }
