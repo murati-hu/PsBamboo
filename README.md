@@ -8,7 +8,7 @@ PsBamboo is a PowerShell module that provides a wrapper for [Bamboo][bamboo]
 
 The module handles both authenticated and anonymous methods, it supports paged
 reading and manipulation of the following [Bamboo][bamboo] resources:
-`Project`, `Plan`, `PlanBranch`, `Build`, `Artifact`, `Server`, `CurrentUser`
+`Project`, `Plan`, `PlanBranch`, `Build`, `Artifact`, `Server`, `CurrentUser`,`DeployProject`
 
 In addition to several already implemented functions, it also provides
 generic Cmdlets to access any not yet covered [Bamboo REST API][bambooapi]
