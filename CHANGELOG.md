@@ -26,3 +26,6 @@ direct UserName and Password functions to fulfill PSGallery requirements
 
 ## 2.0.1 (Mar 9, 2016)
 - Fix to set `Content-Type` via Invoke-RestMethod and enforce basic response parsing  
+## 3.0.0 (Jan 3, 2017)
+- Include support for Bamboo Deploy Projects
+- Include support for the Environments and Results of Bamboo Deploy Projects

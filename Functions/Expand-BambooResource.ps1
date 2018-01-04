@@ -35,11 +35,20 @@ function Expand-BambooResource {
         [string]$PluralResourceName="$($ResourceName)s",
 
         [Parameter()]
-        [string]$Root=$PluralResourceName
+        [string]$Root=$PluralResourceName,
+
+        [Parameter(Mandatory=$False)]
+        [string]$ContentType='application/xml'
 
     )
 
     if ($null -eq $Response) { return }
+
+     if ($ContentType -eq 'application/json') {
+        if ($Response.size -eq 0) { 
+            return 
+        }
+    }
 
     if ($Response | Get-Member $Root) {
         if ($Response.$Root.$PluralResourceName | Get-Member $ResourceName) {
