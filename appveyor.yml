@@ -1,9 +1,6 @@
 # See http://www.appveyor.com/docs/appveyor-yml for many more options
 os: WMF 5
 
-install:
-  - cinst pester
-
 build: false
 
 test_script:
@@ -11,4 +8,5 @@ test_script:
 
 # Skip on updates to the readme.
 skip_commits:
-  message: /updated readme.*|update readme.*s/
+  files:
+    - '**/*.md'
