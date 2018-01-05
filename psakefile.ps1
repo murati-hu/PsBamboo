@@ -24,28 +24,23 @@ Task Init {
 
     "Build System"
     Get-Item ENV:BH*
-
-    "Modules"
-    Get-Module | Format-Table Name,Version
-
-    "Working directory"
-    Get-ChildItem
 }
 
 Task Build -Depends Init {
-    $ModuleManifest = Get-ChildItem *.psd1 | Select-Object -Expand FullName
+    $ModuleManifest = Get-ChildItem -Filter '*.psd1' | Select-Object -Expand FullName
     $ModuleName = (Split-Path $ModuleManifest -Leaf) -replace '.psd1',''
 
     "Building $ModuleName manifest..."
     try {
-        $CurrentVersion = Get-Metadata -Path .\$ModuleManifest -PropertyName ModuleVersion
-        $NextNugetVersion = Get-NextNugetPackageVersion -Name $ModuleName -ErrorAction Stop
+        $CurrentVersion = Get-Metadata -Path $ModuleManifest -PropertyName ModuleVersion
 
-        if ($CurrentVersion -ne $NextNugetVersion) {
-            "Current '$CurrentVersion' of $ModuleName is already published to PsGallery.`n" +
-            "Please Bump the version in source too to '$NextNugetVersion'."
+        if ($ENV:BHBuildNumber) {
+            $Version = [System.Version]$CurrentVersion
+            #+ "." + $ENV:BHBuildNumber
+            "Updating $CurrentVersion version with buildNumber to $Version.."
             Update-Metadata -Path $ModuleManifest -PropertyName ModuleVersion -Value $Version -ErrorAction stop
         }
+        #$NextNugetVersion = Get-NextNugetPackageVersion -Name $ModuleName -ErrorAction Stop
     } catch {
         "Failed to update metadata for '$ModuleName': $_.`nContinuing with existing version"
     }
