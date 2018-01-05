@@ -1,7 +1,7 @@
 # See http://www.appveyor.com/docs/appveyor-yml for many more options
 os: WMF 5
-
 build: false
+version: {build}
 
 test_script:
   - ps: . .\build.ps1
