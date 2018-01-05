@@ -1,4 +1,4 @@
-#
+﻿#
 # Module manifest for 'PsBamboo' module
 # Created by: Akos Murati <akos@murati.hu>
 # Generated on: 10/04/2015
@@ -10,7 +10,7 @@
 RootModule = 'PsBamboo.psm1'
 
 # Version number of this module.
-ModuleVersion = '3.0.0.0'
+ModuleVersion = '3.0.1'
 
 # ID used to uniquely identify this module
 GUID = '85aaff1a-c696-43ad-be1a-53d16477d01d'
@@ -64,34 +64,7 @@ Description = 'PowerShell helper module for Bamboo REST services to build, resum
 # NestedModules = @()
 
 # Functions to export from this module
-FunctionsToExport = @(
-    'Add-BambooPlanBranch'
-    'Copy-BambooPlan'
-    'Disable-BambooPlan'
-    'Disable-BambooPlanBranch'
-    'Enable-BambooPlan'
-    'Enable-BambooPlanBranch'
-    'Expand-BambooResource'
-    'Get-BambooArtifact'
-    'Get-BambooCurrentUser'
-    'Get-BambooDeployEnvironmentResult'
-    'Get-BambooDeployProject'    
-    'Get-BambooDeployProjectEnvironment'    
-    'Get-BambooInfo'
-    'Get-BambooPlan'
-    'Get-BambooPlanBranch'
-    'Get-BambooProject'
-    'Get-BambooQueuedBuild'
-    'Get-BambooResult'
-    'Get-BambooBuildLog'
-    'Get-BambooServer'
-    'Invoke-BambooRestMethod'
-    'Resume-BambooBuild'
-    'Set-BambooAuthentication'
-    'Set-BambooServer'
-    'Start-BambooBuild'
-    'Stop-BambooQueuedBuild'
-)
+FunctionsToExport = @('Add-BambooPlanBranch','Copy-BambooPlan','Disable-BambooPlan','Disable-BambooPlanBranch','Enable-BambooPlan','Enable-BambooPlanBranch','Expand-BambooResource','Get-BambooArtifact','Get-BambooBuildLog','Get-BambooCurrentUser','Get-BambooDeployEnvironmentResult','Get-BambooDeployProject','Get-BambooDeployProjectEnvironment','Get-BambooInfo','Get-BambooPlan','Get-BambooPlanBranch','Get-BambooProject','Get-BambooQueuedBuild','Get-BambooResult','Get-BambooServer','Invoke-BambooRestMethod','Resume-BambooBuild','Set-BambooAuthentication','Set-BambooServer','Start-BambooBuild','Stop-BambooQueuedBuild')
 
 # Cmdlets to export from this module
 # CmdletsToExport = '*'
