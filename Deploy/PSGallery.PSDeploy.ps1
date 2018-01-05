@@ -1,5 +1,5 @@
 ﻿# Publish to gallery with a few restrictions
-if ($env:BHBuildSystem -ine 'Unknown' -and $env:BHBranchName -eq "master") {
+if ($env:BHBuildSystem -ine 'Unknown' -and $env:BHBranchName -eq "master" -and $ENV:PsGalleryApiKey) {
     Deploy Module {
         By PSGalleryModule {
             FromSource $Env:BHPSModulePath

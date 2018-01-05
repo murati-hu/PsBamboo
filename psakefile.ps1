@@ -25,7 +25,7 @@ Task Init {
     "Prepare module output"
     Remove-Item -Path $Env:BHBuildOutput -Recurse -Force -ErrorAction SilentlyContinue
     New-Item -Path $Env:BHPSModulePath -Force -ItemType Directory
-    Copy-Item -Path ./* -Destination $Env:BHPSModulePath -Recurse -Exclude @('BuildOutput','appveyor.yml','build.ps1','psakefile.ps1')
+    Copy-Item -Path ./* -Destination $Env:BHPSModulePath -Recurse -Exclude @('BuildOutput','Deploy','appveyor.yml','build.ps1','psakefile.ps1')
 
     "Build System"
     Get-Item ENV:BH*
