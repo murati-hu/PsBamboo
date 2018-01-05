@@ -2,30 +2,26 @@
 # Init some things
 Properties {
     # Find the build folder based on build system
-        $ProjectRoot = $ENV:BHProjectPath
-        if(-not $ProjectRoot)
-        {
-            $ProjectRoot = $PSScriptRoot
-        }
+    $ProjectRoot = $ENV:BHProjectPath
+    if(-not $ProjectRoot) {
+        $ProjectRoot = $PSScriptRoot
+    }
 
     $Timestamp = Get-date -uformat "%Y%m%d-%H%M%S"
     $PSVersion = $PSVersionTable.PSVersion.Major
     $TestFile = "TestResults_PS$PSVersion`_$TimeStamp.xml"
-    $lines = '----------------------------------------------------------------------'
 
     $Verbose = @{}
-    if($ENV:BHCommitMessage -match "!verbose")
-    {
+    if($ENV:BHCommitMessage -match "!verbose") {
         $Verbose = @{Verbose = $True}
     }
 }
 
-FormatTaskName ("`n$("-"*70)`n{0}")
+FormatTaskName ("`n$("-"*70)`n{0}$("-"*70)`n")
 
 Task Default -Depends Deploy
 
 Task Init {
-    $lines
     Set-Location $ProjectRoot
 
     "Build System Details:"
@@ -36,9 +32,6 @@ Task Init {
 }
 
 Task Build -Depends Init {
-    $lines
-
-    # Load the module, read the exported functions, update the psd1 FunctionsToExport
     Set-ModuleFunctions
 
     try {
@@ -52,7 +45,6 @@ Task Build -Depends Init {
 }
 
 Task Test -Depends Build  {
-    $lines
     "Testing with PowerShell $PSVersion"
 
     # Gather test results. Store them in a variable and file
@@ -75,8 +67,6 @@ Task Test -Depends Build  {
 }
 
 Task Deploy -Depends Test {
-    $lines
-
     $Params = @{
         Path = $ProjectRoot
         Force = $true
