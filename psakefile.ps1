@@ -1,7 +1,7 @@
-# PSake makes variables declared here available in other scriptblocks
-# Init some things
+# Visuals and shared properties
+FormatTaskName ("`n$("-"*70)`n{0}`n$("-"*70)`n")
+
 Properties {
-    # Find the build folder based on build system
     $ProjectRoot = $ENV:BHProjectPath
     if(-not $ProjectRoot) {
         $ProjectRoot = $PSScriptRoot
@@ -17,30 +17,37 @@ Properties {
     }
 }
 
-FormatTaskName ("`n$("-"*70)`n{0}$("-"*70)`n")
-
 Task Default -Depends Deploy
 
 Task Init {
     Set-Location $ProjectRoot
 
-    "Build System Details:"
+    Write-Host "Build System"
     Get-Item ENV:BH*
 
-    "Module details:"
+    Write-Host "Modules"
     Get-Module | Format-Table Name,Version
+
+    Write-Host "Working directory"
+    Get-ChildItem
 }
 
 Task Build -Depends Init {
-    Set-ModuleFunctions
+    $ModuleManifest = Get-ChildItem *.psd1 | Select-Object -Expand FullName
+    $ModuleName = (Split-Path $ModuleManifest -Leaf) -replace '.psd1',''
 
+    Write-Host "Building $ModuleName manifest..."
     try {
-        "Updating Module manifest '$env:BHPSModuleManifest'.."
-        $Version = Get-NextNugetPackageVersion -Name $env:BHProjectName -ErrorAction Stop
-        "Setting Version '$Version'.."
-        Update-Metadata -Path $env:BHPSModuleManifest -PropertyName ModuleVersion -Value $Version -ErrorAction stop
+        $CurrentVersion = Get-Metadata -Path .\$ModuleManifest -PropertyName ModuleVersion
+        $NextNugetVersion = Get-NextNugetPackageVersion -Name $ModuleName -ErrorAction Stop
+
+        if ($CurrentVersion -ne $NextNugetVersion) {
+            "Current '$CurrentVersion' of $ModuleName is already published to PsGallery.`n" +
+            "Please Bump the version in source too to '$NextNugetVersion'." | Write-Warning
+            Update-Metadata -Path $ModuleManifest -PropertyName ModuleVersion -Value $Version -ErrorAction stop
+        }
     } catch {
-        "Failed to update version for '$env:BHProjectName': $_.`nContinuing with existing version"
+        "Failed to update metadata for '$ModuleName': $_.`nContinuing with existing version"
     }
 }
 
