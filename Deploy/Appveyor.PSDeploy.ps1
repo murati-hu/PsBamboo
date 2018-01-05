@@ -5,7 +5,7 @@ if($env:BHPSModulePath -and $env:BHBuildSystem -eq 'AppVeyor') {
             FromSource $Env:BHPSModulePath
             To AppVeyor
             WithOptions @{
-                Version = $env:APPVEYOR_BUILD_VERSION
+                Version = (Get-Metadata -Path $ENV:BHPSModuleManifest -PropertyName ModuleVersion)
             }
         }
     }
