@@ -67,7 +67,7 @@ Task Test -Depends Build  {
 
 Task Deploy -Depends Test {
     $Params = @{
-        Path = $Env:BHPSModulePath
+        Path = $Env:BHProjectPath
         Force = $true
         Recurse = $true
     }
