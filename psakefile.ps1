@@ -22,13 +22,13 @@ Task Default -Depends Deploy
 Task Init {
     Set-Location $ProjectRoot
 
-    Write-Host "Build System"
+    "Build System"
     Get-Item ENV:BH*
 
-    Write-Host "Modules"
+    "Modules"
     Get-Module | Format-Table Name,Version
 
-    Write-Host "Working directory"
+    "Working directory"
     Get-ChildItem
 }
 
@@ -36,14 +36,14 @@ Task Build -Depends Init {
     $ModuleManifest = Get-ChildItem *.psd1 | Select-Object -Expand FullName
     $ModuleName = (Split-Path $ModuleManifest -Leaf) -replace '.psd1',''
 
-    Write-Host "Building $ModuleName manifest..."
+    "Building $ModuleName manifest..."
     try {
         $CurrentVersion = Get-Metadata -Path .\$ModuleManifest -PropertyName ModuleVersion
         $NextNugetVersion = Get-NextNugetPackageVersion -Name $ModuleName -ErrorAction Stop
 
         if ($CurrentVersion -ne $NextNugetVersion) {
             "Current '$CurrentVersion' of $ModuleName is already published to PsGallery.`n" +
-            "Please Bump the version in source too to '$NextNugetVersion'." | Write-Warning
+            "Please Bump the version in source too to '$NextNugetVersion'."
             Update-Metadata -Path $ModuleManifest -PropertyName ModuleVersion -Value $Version -ErrorAction stop
         }
     } catch {
@@ -66,8 +66,7 @@ Task Test -Depends Build  {
 
     Remove-Item "$ProjectRoot\$TestFile" -Force -ErrorAction SilentlyContinue
 
-    # Failed tests?
-    # Need to tell psake or it will proceed to the deployment. Danger!
+
     if($TestResults.FailedCount -gt 0) {
         Write-Error "Failed '$($TestResults.FailedCount)' tests, build failed"
     }
