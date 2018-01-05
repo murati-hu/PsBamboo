@@ -29,7 +29,7 @@
                 else
                 {
                     Write-Verbose -Message "Module Installed, Importing $($ModuleName)"
-                    Import-Module -Name $ModuleName -Force -RequiredVersion $Version
+                    Import-Module -Name $ModuleName -Force -RequiredVersion $Version -ErrorAction SilentlyContinue
                 }
             }
             else
