@@ -1,34 +1,23 @@
-# Visuals and shared properties
-FormatTaskName ("`n$("-"*70)`n{0}`n$("-"*70)`n")
-
 Properties {
-    $ProjectRoot = $ENV:BHProjectPath
-    if(-not $ProjectRoot) {
-        $ProjectRoot = $PSScriptRoot
-    }
-
-    $Timestamp = Get-date -uformat "%Y%m%d-%H%M%S"
-    $PSVersion = $PSVersionTable.PSVersion.Major
-    $TestFile = "TestResults_PS$PSVersion`_$TimeStamp.xml"
-
     $Verbose = @{}
     if($ENV:BHCommitMessage -match "!verbose") {
         $Verbose = @{Verbose = $True}
     }
 }
 
+FormatTaskName ("`n$("-"*70)`n{0}`n$("-"*70)`n")
+
 Task Default -Depends Deploy
 
 Task Init {
-    Set-Location $ProjectRoot
-
-    "Prepare module output"
-    Remove-Item -Path $Env:BHBuildOutput -Recurse -Force -ErrorAction SilentlyContinue
-    New-Item -Path $Env:BHPSModulePath -Force -ItemType Directory
-    Copy-Item -Path ./* -Destination $Env:BHPSModulePath -Recurse -Exclude @('BuildOutput','Deploy','appveyor.yml','build.ps1','psakefile.ps1')
-
     "Build System"
     Get-Item ENV:BH*
+
+    "Prepare module output"
+    Set-Location $PSScriptRoot
+    Remove-Item -Path $Env:BHBuildOutput -Recurse -Force -ErrorAction SilentlyContinue
+    New-Item -Path $Env:BHPSModulePath -Force -ItemType Directory | Out-Null
+    Copy-Item -Path ./* -Destination $Env:BHPSModulePath -Recurse -Exclude @('BuildOutput','Deploy','appveyor.yml','build.ps1','psakefile.ps1')
 }
 
 Task Build -depends Init {
@@ -48,17 +37,14 @@ Task Build -depends Init {
 }
 
 Task Test -Depends Build  {
-    $TestResults = Invoke-Pester -Path $Env:BHPSModulePath\Tests -PassThru -OutputFormat NUnitXml -OutputFile "$ProjectRoot\$TestFile"
+    $TestFile = Join-Path $Env:BHBuildOutput "PesterTestResults_$(Get-date -uformat "%Y%m%d-%H%M%S").xml"
+    $TestResults = Invoke-Pester -Path $Env:BHPSModulePath\Tests -PassThru -OutputFormat NUnitXml -OutputFile $TestFile
 
-    # In Appveyor?  Upload our tests! #Abstract this into a function?
-    If($ENV:BHBuildSystem -ieq 'AppVeyor') {
-        (New-Object 'System.Net.WebClient').UploadFile(
-            "https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)",
-            "$ProjectRoot\$TestFile" )
+    If($env:APPVEYOR_JOB_ID) {
+        $appVeyorTestUrl = "https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)"
+        (New-Object 'System.Net.WebClient').UploadFile($appVeyorTestUrl, $TestFile)
     }
-
-    Remove-Item "$ProjectRoot\$TestFile" -Force -ErrorAction SilentlyContinue
-
+    Remove-Item -Path $TestFile -Force -ErrorAction SilentlyContinue
 
     if($TestResults.FailedCount -gt 0) {
         Write-Error "Failed '$($TestResults.FailedCount)' tests, build failed"

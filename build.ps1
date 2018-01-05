@@ -44,6 +44,8 @@
 
 Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
 Resolve-Module Psake, BuildHelpers, Pester, PSScriptAnalyzer, PSDeploy
+
+Set-Location $PSScriptRoot
 Set-BuildEnvironment
 
 # Set Module details
