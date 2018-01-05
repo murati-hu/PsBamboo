@@ -1,5 +1,5 @@
 ﻿# Publish to gallery with a few restrictions
-if ($env:BHBuildSystem -ine 'Unknown' -and $env:BHBranchName -eq "master") {
+if ($env:BHBuildSystem -ine 'Unknown') {  # -and $env:BHBranchName -eq "master") {
     Deploy Module {
         By PSGalleryModule {
             FromSource $Env:BHPSModulePath
@@ -10,8 +10,8 @@ if ($env:BHBuildSystem -ine 'Unknown' -and $env:BHBranchName -eq "master") {
         }
     }
 } else {
-    "Skipping deployment: To deploy, ensure that...`n" +
-    "`t* You are in a known build system (Current: $ENV:BHBuildSystem)`n" +
-    "`t* You are committing to the master branch (Current: $ENV:BHBranchName) `n" |
+    "Skipping PSGallery deployment, since build running:`n" +
+    "`t* in an unknown build system (Current: $ENV:BHBuildSystem)`n" +
+    "`t* or not in the master branch (Current: $ENV:BHBranchName) `n" |
     Write-Host -ForegroundColor Yellow
 }
