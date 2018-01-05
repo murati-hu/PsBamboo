@@ -2,7 +2,7 @@
 if($env:BHBuildSystem -eq 'AppVeyor') {
     Deploy DeveloperBuild {
         By AppVeyorModule {
-            FromSource Resolve-Path '../'
+            FromSource (Resolve-Path -Path './')
             To AppVeyor
             WithOptions @{
                 Version = $env:APPVEYOR_BUILD_VERSION
