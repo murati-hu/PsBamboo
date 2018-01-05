@@ -45,5 +45,12 @@
 Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
 Resolve-Module Psake, BuildHelpers, Pester, PSScriptAnalyzer, PSDeploy
 Set-BuildEnvironment
+
+# Set Module details
+$ModuleManifest = Get-ChildItem -Filter '*.psd1' | Select-Object -Expand FullName -First 1
+$Env:BHProjectName = (Split-Path $ModuleManifest -Leaf) -replace '.psd1',''
+$Env:BHPSModulePath = Join-Path -Path $env:BHBuildOutput -ChildPath $Env:BHProjectName
+$Env:BHPSModuleManifest = Join-Path $Env:BHPSModulePath "$($Env:BHProjectName).psd1"
+
 Invoke-psake
 exit ( [int]( -not $psake.build_success ) )

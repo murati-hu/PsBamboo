@@ -2,7 +2,7 @@
 if ($env:BHBuildSystem -ine 'Unknown' -and $env:BHBranchName -eq "master") {
     Deploy Module {
         By PSGalleryModule {
-            FromSource Resolve-Path '../'
+            FromSource $Env:BHPSModulePath
             To PSGallery
             WithOptions @{
                 ApiKey = $ENV:PsGalleryApiKey

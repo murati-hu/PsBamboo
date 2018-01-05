@@ -7,10 +7,6 @@ Properties {
         $ProjectRoot = $PSScriptRoot
     }
 
-    $ModuleManifest = Get-ChildItem -Filter '*.psd1' | Select-Object -Expand FullName
-    $ModuleName = (Split-Path $ModuleManifest -Leaf) -replace '.psd1',''
-    $ModuleOutput = Join-Path -Path $env:BHBuildOutput -ChildPath $ModuleName
-
     $Timestamp = Get-date -uformat "%Y%m%d-%H%M%S"
     $PSVersion = $PSVersionTable.PSVersion.Major
     $TestFile = "TestResults_PS$PSVersion`_$TimeStamp.xml"
@@ -28,8 +24,8 @@ Task Init {
 
     "Prepare module output"
     Remove-Item -Path $Env:BHBuildOutput -Recurse -Force -ErrorAction SilentlyContinue
-    New-Item -Path $ModuleOutput -Force -ItemType Directory
-    Copy-Item -Path ./* -Destination $ModuleOutput -Recurse -Exclude "BuildOutput"
+    New-Item -Path $Env:BHPSModulePath -Force -ItemType Directory
+    Copy-Item -Path ./* -Destination $Env:BHPSModulePath -Recurse -Exclude @('BuildOutput','appveyor.yml','build.ps1','psakefile.ps1')
 
     "Build System"
     Get-Item ENV:BH*
@@ -38,25 +34,21 @@ Task Init {
 Task Build -depends Init {
     "Building $ModuleName manifest..."
     try {
-        $ModuleManifest = Join-Path $ModuleOutput "$ModuleName.psd1"
-        $CurrentVersion = Get-Metadata -Path $ModuleManifest -PropertyName ModuleVersion
+        $CurrentVersion = Get-Metadata -Path $ENV:BHPSModuleManifest -PropertyName ModuleVersion
 
         if ($ENV:BHBuildNumber) {
             #$NextNugetVersion = Get-NextNugetPackageVersion -Name $ModuleName -ErrorAction Stop
             $Version = $CurrentVersion -replace '\d+$',$ENV:BHBuildNumber
             "Updating $CurrentVersion version with BuildNumber to $Version.."
-            Update-Metadata -Path $ModuleManifest -PropertyName ModuleVersion -Value $Version -ErrorAction stop
+            Update-Metadata -Path $ENV:BHPSModuleManifest -PropertyName ModuleVersion -Value $Version -ErrorAction stop
         }
     } catch {
-        "Failed to update metadata for '$ModuleName': $_.`nContinuing with existing version"
+        "Failed to update metadata for '$ENV:BHProjectName': $_.`nContinuing with existing version"
     }
 }
 
 Task Test -Depends Build  {
-    "Testing with PowerShell $PSVersion"
-
-    # Gather test results. Store them in a variable and file
-    $TestResults = Invoke-Pester -Path $ModuleOutput\Tests -PassThru -OutputFormat NUnitXml -OutputFile "$ProjectRoot\$TestFile"
+    $TestResults = Invoke-Pester -Path $Env:BHPSModulePath\Tests -PassThru -OutputFormat NUnitXml -OutputFile "$ProjectRoot\$TestFile"
 
     # In Appveyor?  Upload our tests! #Abstract this into a function?
     If($ENV:BHBuildSystem -ieq 'AppVeyor') {
@@ -75,7 +67,7 @@ Task Test -Depends Build  {
 
 Task Deploy -Depends Test {
     $Params = @{
-        Path = $ModuleOutput
+        Path = $Env:BHPSModulePath
         Force = $true
         Recurse = $true
     }
