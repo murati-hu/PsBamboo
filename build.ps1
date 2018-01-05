@@ -43,7 +43,7 @@
 }
 
 Get-PackageProvider -Name NuGet -ForceBootstrap | Out-Null
-Resolve-Module Psake, PSDeploy, Pester, BuildHelpers
+Resolve-Module Psake, BuildHelpers, Pester, PSScriptAnalyzer, PSDeploy
 Set-BuildEnvironment
 Invoke-psake
 exit ( [int]( -not $psake.build_success ) )
