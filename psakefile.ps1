@@ -35,12 +35,11 @@ Task Build -Depends Init {
         $CurrentVersion = Get-Metadata -Path $ModuleManifest -PropertyName ModuleVersion
 
         if ($ENV:BHBuildNumber) {
-            $Version = [System.Version]$CurrentVersion
-            #+ "." + $ENV:BHBuildNumber
-            "Updating $CurrentVersion version with buildNumber to $Version.."
+            #$NextNugetVersion = Get-NextNugetPackageVersion -Name $ModuleName -ErrorAction Stop
+            $Version = $CurrentVersion -replace '\d+$',$ENV:BHBuildNumber
+            "Updating $CurrentVersion version with BuildNumber to $Version.."
             Update-Metadata -Path $ModuleManifest -PropertyName ModuleVersion -Value $Version -ErrorAction stop
         }
-        #$NextNugetVersion = Get-NextNugetPackageVersion -Name $ModuleName -ErrorAction Stop
     } catch {
         "Failed to update metadata for '$ModuleName': $_.`nContinuing with existing version"
     }
