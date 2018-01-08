@@ -13,6 +13,7 @@ Get-BambooCurrentUser
 Get-BambooDeployEnvironmentResult
 Get-BambooDeployProject
 Get-BambooDeployProjectEnvironment
+Get-BambooDeployProjectEnvironmentTasks
 Get-BambooInfo
 Get-BambooPlan
 Get-BambooPlanBranch
