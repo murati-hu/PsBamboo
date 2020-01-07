@@ -22,7 +22,10 @@ function Get-BambooDeployEnvironmentResult {
     param(
         [Parameter(Mandatory=$True)]
         [ValidateNotNullOrEmpty()]
-        [string]$DeployEnvironmentId
+        [string]$DeployEnvironmentId,
+        [Parameter(Mandatory=$False)]
+        [ValidateNotNullOrEmpty()]
+        [datetime]$Since
     )
 
     $ContentType = 'application/json'
@@ -41,9 +44,28 @@ function Get-BambooDeployEnvironmentResult {
     Do {
         $result = $null
         $result = Invoke-BambooRestMethod -Resource $resource -ContentType $ContentType -UriParams $uriParams 
-        
+
+        if ($result -and ($result | Get-Member 'results') -and ($result.results.length -gt 0)) {
+            $EpochStart = Get-Date "01/01/1970"
+            $lastDate = $EpochStart.AddMilliseconds($result.results[-1].startedDate)
+            $gotSince = $lastDate -lt $Since
+            Write-Verbose "$lastDate is older than $Since : $gotSince"
+            if ($gotSince) {
+                $result.results = $result.results | Where-Object {
+                    $EpochStart.AddMilliseconds($_.startedDate) -ge $Since                        
+                }
+            }
+        }
+
+        if (!$result.results){
+            break
+        }
         $result | Expand-BambooResource -ResourceName 'results' -ContentType $ContentType |
         Add_ObjectType -TypeName 'PsBamboo.DeployEnvironmentResult'   
+
+        if ($gotSince){
+            break
+        }
         
         #Adjust Pagination
         $page = $null
