@@ -5,6 +5,8 @@
     Gets all results for the deploy environment
 .PARAMETER DeployEnvironmentId
     Mandatory - Key for the Bamboo Deploy Project to be described
+.PARAMETER Since
+    Optional - DateTime parameter to filter results only to include reults since the date
 .EXAMPLE
     Get-BambooDeployEnvironmentResult -DeployEnvironmentId '65732621'
 
