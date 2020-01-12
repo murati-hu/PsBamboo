@@ -3,3 +3,4 @@ BuildOutput
 Test.xml
 vendor/packages/
 PsBamboo.sandbox.ps1
+.history
