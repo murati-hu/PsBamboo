@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Configuration>
+  <ViewDefinitions>
+     <View>
+      <Name>PsBamboo.DeployEnvironmentTasks</Name>
+      <ViewSelectedBy>
+        <TypeName>PsBamboo.DeployEnvironmentTasks</TypeName>
+      </ViewSelectedBy>
+      <TableControl>
+        <TableRowEntries>
+          <TableRowEntry>
+            <TableColumnItems>
+              <TableColumnItem>
+                <PropertyName>orderId</PropertyName>
+              </TableColumnItem>                
+              <TableColumnItem>
+                <PropertyName>description</PropertyName>
+              </TableColumnItem>            
+              <TableColumnItem>
+                <PropertyName>isDisabled</PropertyName>
+              </TableColumnItem>
+              <TableColumnItem>
+                <PropertyName>isScript</PropertyName>
+              </TableColumnItem>
+            </TableColumnItems>
+          </TableRowEntry>
+        </TableRowEntries>
+      </TableControl>
+    </View>
+  </ViewDefinitions>
+</Configuration>
